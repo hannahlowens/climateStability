@@ -1,0 +1,84 @@
+
+---
+title: "climateStability Vignette: the Basics"
+author:
+- Hannah Owens
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    fig_caption: yes
+    toc: true
+    toc_depth: 3
+vignette: >
+  %\VignetteIndexEntry{How to use climateStability}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+library(climateStability);
+library(raster);
+library(rangeBuilder);
+knitr::opts_chunk$set(error = TRUE);
+```
+
+# Introduction 
+
+`climateStability` is a small set of `R`-based tools for generating climate stability estimates based on time slices of climate model data.
+
+# Calculating Stability
+First, you give the `deviationThroughTime` function the location of a folder containing time slice data, such as that produced by PaleoView, and the time elapsed between slices. It will calculate the standard deviation of a given climate variable in each cell. Note that `deviationThroughTime` will use *all* the raster files in the given folder, so be careful that it only contains the files from which you want to calculate stability.
+
+```{r example of deviation through time, eval=FALSE}
+\dontrun{
+  #Using deviationThroughTime
+  precipDeviation <- deviationThroughTime("precipfiles/", 20000);
+  temperatureDeviation <- deviationThroughTime("tempfiles/", 20000);
+}
+```
+
+You have been provided with two pre-calculated deviation-through-time estimates from the OWENS BIODIVERSITY INFORMATICS PAPER. These were calculated from 100-year climate means for 20 time slices from 21 kbp to 1 kbp using data from the TRaCE 21k climate experiment, run in the CCSM 3.0 climate model. 
+
+Let's load them into the `R` environment.
+
+```{r load the results of deviation through time from the package}
+#Using deviationThroughTime
+data(precipitationStandardDeviation, package = "climateStability");
+data(temperatureStandardDeviation, package = "climateStability");
+```
+
+It may be preferable to instead use climate stability instead of deviation. This is the inverse of the standard deviation.
+
+```{r calculate stability from deviation}
+precipStability <- 1/precipDeviation;
+tempStability <- 1/temperatureDeviation;
+```
+
+# Plots showing stability
+
+These data can be visualized either as rasters or as line graphs showing the relationship between latitude and stability (or however you want to display them--I won't tell you how to live your life).
+
+## Stability rasters
+
+This is what climate the stability rasters look like.
+
+```{r plot stability rasters, fig.height=4, fig.width=8}
+plot(precipStability, main = "Precipitation Stability");
+plot(gshhs, add = T)
+plot(tempStability, main = "Temperature Stability");
+plot(gshhs, add = T)
+```
+
+
+## Stability line graphs
+
+The `climateStability` package also comes with a useful tool for calculating mean stability per line of latitude. This can then be used to plot climate stability for a given variable as a response to latitude.
+
+```{r plot latitudinal mean in stability, fig.height=4, fig.width=8}
+#Calculate mean values at rasters
+plot(latitudinalMean(precipStability), main = "Precipitation Stability by Latitude", 
+     ylab = "Relative Stability", type = "l");
+
+plot(latitudinalMean(tempStability), main = "Temperature Stability by Latitude", 
+     ylab = "Relative Stability", type = "l");
+```
