@@ -10,7 +10,7 @@ library(raster);
 #'
 #' @examples
 #'
-#' data(precipitationStandardDeviation);
+#' data(precipDeviation);
 #' precipStability <- 1/precipDeviation;
 #' alm <- absLatitudinalMean(rasterForCalculation = precipStability);
 #' plot(alm, main = "Precipitation Stability by Absolute Latitude",

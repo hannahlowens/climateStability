@@ -17,7 +17,7 @@ A function to calculate mean values of a raster at the absolute value of every l
 }
 \examples{
 
-data(precipitationStandardDeviation);
+data(precipDeviation);
 precipStability <- 1/precipDeviation;
 alm <- absLatitudinalMean(rasterForCalculation = precipStability);
 plot(alm, main = "Precipitation Stability by Absolute Latitude",

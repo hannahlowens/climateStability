@@ -17,7 +17,7 @@ A function to calculate mean values of a raster at every line of latitude, at th
 }
 \examples{
 
-data(precipitationStandardDeviation);
+data(precipDeviation);
 precipStability <- 1/precipDeviation;
 latMean <- absLatitudinalMean(rasterForCalculation = precipStability);
 plot(latMean, main = "Precipitation Stability by Latitude",

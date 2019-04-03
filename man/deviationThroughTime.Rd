@@ -2,24 +2,34 @@
 % Please edit documentation in R/deviationThroughTime.R
 \name{deviationThroughTime}
 \alias{deviationThroughTime}
-\title{deviationThroughTime}
+\title{Calculating Deviation Through Time}
 \usage{
-deviationThroughTime(variableDirectory, timePeriod)
+deviationThroughTime(variableDirectory, timeSlicePeriod)
 }
 \arguments{
 \item{variableDirectory}{A directory containing at least two time slice rasters for a given climate variable.}
 
-\item{timePeriod}{A number, in years, representing time elapsed between climate variable raster slices.}
+\item{timeSlicePeriod}{Either a single number, in years, representing the time period elapsed between temporally-even climate variable raster slices, or a vector corresponding to periods, in years, between temporally-uneven timeslices.}
 }
 \value{
-A raster showing the geographic distribution of standard deviations through time in a particular climate variable.
+A raster showing the geographic distribution of climate deviation through time for a particular climate variable.
 }
 \description{
-A function that reads time-slice rasters of data for a given climate (typically processed data from a climate model run, suceh as the results of an analysis using PaleoView (Fordham, *et al*. 2017, Ecography)) in a given directory and calculates standard deviation in that climate variable through time.
+A function that reads time-slice rasters of data for a given climate (typically processed data from a climate model run, such as the results of an analysis using PaleoView (Fordham, *et al*. 2017, Ecography)) in a given directory and calculates average deviation per year across time slices.
+}
+\details{
+Make sure that files in the `variableDirectory` are read into `R` in order.
+
+If you are specifying temporally-uneven timeslices with `timeSlicePeriod`, make sure that each number corresponds to the number of years elapsed *between* time slices, *in the same order as the files were read into `R`*. There should be one less number than the number of files.
 }
 \examples{
 \dontrun{
-precipDeviation <- deviationThroughTime("precipfiles/", 20000);
+#Even time slices
+precipDeviation <- deviationThroughTime("precipfiles/", 1000);
+
+#Uneven time slices
+precipDeviationUneven <- deviationThroughTime("unevenPrecipFiles",
+                                              c(1000, 1000, 1000, 1000, 5000, 5000, 6000))
 }
 
 }

@@ -6,7 +6,7 @@
 #'
 #' @docType data
 #'
-#' @usage data(precipitationStandardDeviation)
+#' @usage data(precipDeviation)
 #'
 #' @format An object of class \code{"raster"}
 #'
@@ -15,7 +15,7 @@
 #' @references OWENS BIODIVERSITY INFORMATICS CITATION GOES HERE
 #'
 #' @examples
-#' data(precipitationStandardDeviation)
+#' data(precipDeviation)
 #' precipStability <- 1/precipDeviation; #calculate stability from deviation
 #'
 "precipDeviation"

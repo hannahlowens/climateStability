@@ -6,7 +6,7 @@
 #'
 #' @docType data
 #'
-#' @usage data(temperatureStandardDeviation)
+#' @usage data(temperatureDeviation)
 #'
 #' @format An object of class \code{"raster"}
 #'
@@ -15,7 +15,7 @@
 #' @references OWENS BIODIVERSITY INFORMATICS CITATION GOES HERE
 #'
 #' @examples
-#' data(temperatureStandardDeviation)
+#' data(temperatureDeviation)
 #' tempStability <- 1/temperatureDeviation; #calculate stability from deviation
 #'
 "temperatureDeviation"

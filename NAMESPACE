@@ -3,5 +3,6 @@
 export(absLatitudinalMean)
 export(deviationThroughTime)
 export(latitudinalMean)
+export(rescale0to1)
 import(raster)
 importFrom(stats,sd)
