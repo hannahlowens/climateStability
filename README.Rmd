@@ -1,26 +1,35 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-climateStability
-================
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+# climateStability
 
 The goal of climateStability is to provide a simple set of `R`-based tools to generate climate stability estimates based on time slices of climate data.
 
-Installation
-------------
+## Installation
 
 You can install climateStability from github with:
 
-``` r
+```{r gh-installation, eval = FALSE}
 # install.packages("devtools")
 devtools::install_github("hannahlowens/climateStability")
 ```
 
-Example
--------
+## Example
 
 This is a basic example which shows you how to calculate climate stability using time-slice datasets for two variables:
 
-``` r
+```{r example, eval=FALSE}
 # Set the working directory where you climate data are located (one sub-folder per variable)
 dir <- "yourDirectory"
 
@@ -45,7 +54,6 @@ climateStability <- rescale0to1(precipStability * tempStability)
 ```
 
 For more information, refer to the vignette.
-
-``` r
+```{r vignette, eval = F}
 browseVignettes("climateStability")
 ```
