@@ -44,7 +44,7 @@ tempStability <- rescale0to1(tempInvDev);
 climateStability <- rescale0to1(precipStability * tempStability)
 ```
 
-For more information, refer to the vignette.
+For more information, refer to the [vignette](https://github.com/hannahlowens/climateStability/blob/master/inst/doc/climateStability_Vignette.html).
 
 ``` r
 browseVignettes("climateStability")
