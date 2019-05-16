@@ -2,7 +2,7 @@ Package: climateStability
 Title: Estimating Climate Stability from Climate Model Data
 Version: 0.1.0.0
 Authors@R: person("Hannah", "Owens", email = "hannah.owens@gmail.com", role = c("aut", "cre"))
-Description: This package uses time-slice climate data such as that produced by *PaleoView* to estimate climate stability through time.
+Description: Climate stability measures are not formalized in the literature and tools for generating stability metrics from existing data are nascent. This package provides tools for calculating climate stability from raster data encapsulating climate change as a series of time slices. The methods follow Owens and Guralnick, *Submitted*, *Biodiversity Informatics*.
 Depends: R (>= 3.5.0)
 License: GPL-3
 Encoding: UTF-8
