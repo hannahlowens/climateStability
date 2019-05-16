@@ -2,11 +2,17 @@ library(raster);
 
 #' @title absLatitudinalMean
 #'
-#' @description A function to calculate mean values of a raster at the absolute value of every line of latitude, at the resolution of a given raster layer.
+#' @description A function to calculate mean values of a raster at the absolute value of latitude, at the resolution of a given raster layer.
 #'
 #' @param rasterForCalculation A raster that contains data for plotting according to latitudinal value
 #'
 #' @return A vector of mean raster values for each absolute value of latitude.
+#'
+#' @keywords manip
+#'
+#' @references Owens, HL, and RP Guralnick. *Submitted*. *Biodiversity Informatics*.
+#'
+#' @seealso \code{\link{latitudinalMean}} for calculating mean values of rasters for all latitudinal bands.
 #'
 #' @examples
 #'

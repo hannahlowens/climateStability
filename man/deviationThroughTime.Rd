@@ -33,3 +33,10 @@ precipDeviationUneven <- deviationThroughTime("unevenPrecipFiles",
 }
 
 }
+\references{
+Owens, HL, and RP Guralnick. *Submitted*. *Biodiversity Informatics*.
+}
+\seealso{
+\code{\link{precipDeviation}} and \code{\link{temperatureDeviation}} for examples of data produced using this function.
+}
+\keyword{manip}

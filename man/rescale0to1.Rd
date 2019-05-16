@@ -22,3 +22,7 @@ precipStability <- 1/precipDeviation;
 relativeClimateStability <- rescale0to1(precipStability);
 
 }
+\references{
+Owens, HL, and RP Guralnick. *Submitted*. *Biodiversity Informatics*.
+}
+\keyword{manip}

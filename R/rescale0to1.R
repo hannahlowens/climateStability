@@ -8,6 +8,10 @@ library(raster);
 #'
 #' @return A raster that has been rescaled from 0 to 1
 #'
+#' @keywords manip
+#'
+#' @references Owens, HL, and RP Guralnick. *Submitted*. *Biodiversity Informatics*.
+#'
 #' @examples
 #'
 #' data(precipDeviation);

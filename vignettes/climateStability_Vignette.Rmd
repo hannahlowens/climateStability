@@ -27,9 +27,9 @@ knitr::opts_chunk$set(error = TRUE);
 `climateStability` is a small set of `R`-based tools for generating climate stability estimates based on time slices of climate data.
 
 # Calculating Stability
-First, you give the `deviationThroughTime` function the location of a folder containing time slice data (as .ascii rasters) for a single variable, such as that produced by PaleoView (Fordham, *et al*. 2017, Ecography), and the time elapsed *between slices*. It will calculate the average standard deviation over time for each cell. Note that `deviationThroughTime` will use *all* the raster files in the given folder in order, so be careful that it only contains the files from which you want to calculate stability and that `R` loads the files in the correct order.
+First, you give the `deviationThroughTime` function the location of a folder containing time slice data (as ASCII rasters) for a single variable, such as that produced by PaleoView (Fordham, *et al*. 2017, Ecography), and the time elapsed *between slices*. It will calculate the average standard deviation over time for each cell. Note that `deviationThroughTime` will use *all* the raster files in the given folder in order, so be careful that it only contains the files from which you want to calculate stability. You may want to also that `R` loads the files in the correct order--that is, that your files are named in such a way that they are in order when read in.
 
-The function accomodates datasets with even temporal intervals, as well as uneven intervals. First, here is an example with a dataset that has time slices every 1,000 years.
+The function accomodates datasets with even temporal intervals, as well as uneven intervals. First, here is an example with a dataset in which 1,000 years has elapsed between each raster layer.
 
 ```{r example of deviation through time with even time slices, eval=FALSE}
 # deviationThroughTime using even time slices
@@ -39,7 +39,7 @@ temperatureDeviation <- deviationThroughTime(variableDirectory = "../../ClimateS
                                              timeSlicePeriod = 1000);
 ```
 
-Here is an example with a dataset that has uneven time slices for 1kybp to 5 kybp, 10kybp, 15kybp, and 21kybp. In this case, `timeSlicePeriod` can take a vector specifying the time elapsed between slices. NOTE: make sure the vector is in the *same order* as your time slices. There should be one fewer `timeSlicePeriod` item than the numer of climate slice files.
+Here is an example with a dataset for which there are uneven time intervals between rasters (every 1,000 years between 1kybp to 5 kybp, and then rasters for 10kybp, 15kybp, and 21kybp). In this case, `timeSlicePeriod` can take a vector specifying the time elapsed between slices. NOTE: make sure the time interval vector is in the *same order* as your time slices. There should be one fewer `timeSlicePeriod` items than the numer of climate slice files.
 
 ```{r example of deviation through time with uneven time slices, eval=FALSE}
 # deviationThroughTime using uneven time slices
@@ -49,7 +49,7 @@ unevenTemperatureDeviation <- deviationThroughTime(variableDirectory = "../../Cl
                                                    timeSlicePeriod = c(1000, 1000, 1000, 1000, 5000, 5000, 6000));
 ```
 
-You have been provided with two pre-calculated deviation-through-time estimates from the OWENS BIODIVERSITY INFORMATICS PAPER. These were calculated from 100-year climate means for 20 1,000-year time slices from 21 kbp to 1 kbp using data from the TRaCE 21k climate experiment, run in the CCSM 3.0 climate model. These layers will be used to illustrate the remaining `climateStability` package functions.
+You have been provided with two pre-calculated deviation-through-time estimates from Owens and Guralnick, *Submitted*, *Biodiversity Informatics*. These were calculated from 100-year climate means for 20 1,000-year time slices from 21 kbp to 1 kbp using data from the TRaCE 21k climate experiment, run in the CCSM 3.0 climate model. These layers will be used to illustrate the remaining `climateStability` package functions.
 
 Let's load them into the `R` environment.
 
@@ -59,7 +59,7 @@ data(precipDeviation, package = "climateStability");
 data(temperatureDeviation, package = "climateStability");
 ```
 
-The next step is scaling the deviation through time estimate from 0 to 1, and then take the inverse of the result. This how you estimate stability for a given climate variable, per OWENS BIODIVERSITY INFORMATICS PAPER.
+The next step is scaling the deviation through time estimate from 0 to 1, and then take the inverse of the result. This how you estimate stability for a given climate variable, per Owens and Guralnick, *Submitted*, *Biodiversity Informatics*.
 
 ```{r calculate stability from deviation}
 precipInvDev <- 1/precipDeviation;
@@ -77,7 +77,7 @@ climateStability <- rescale0to1(precipStability * tempStability)
 
 # Plots showing stability
 
-These data can be visualized either as rasters or as line graphs showing the relationship between latitude and stability (or however you want to display them--I won't tell you how to live your life).
+These data can be visualized either as rasters or as line graphs showing the relationship between latitude and stability.
 
 ## Stability rasters
 
@@ -95,7 +95,7 @@ plot(gshhs, add = T)
 
 ## Stability line graphs
 
-The `climateStability` package also comes with a useful tool for calculating mean stability per line of latitude, `latitudinalMean`. This can then be used to plot climate stability for a given variable as a response to latitude.
+The `climateStability` package comes with a useful tool for calculating mean stability per line of latitude, `latitudinalMean`. This can then be used to plot climate stability for a given variable as a response to latitude.
 
 ```{r plot latitudinal mean in stability, fig.height=4, fig.width=8}
 #Calculate mean values at rasters

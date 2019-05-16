@@ -13,7 +13,7 @@ absLatitudinalMean(rasterForCalculation)
 A vector of mean raster values for each absolute value of latitude.
 }
 \description{
-A function to calculate mean values of a raster at the absolute value of every line of latitude, at the resolution of a given raster layer.
+A function to calculate mean values of a raster at the absolute value of latitude, at the resolution of a given raster layer.
 }
 \examples{
 
@@ -24,3 +24,10 @@ plot(alm, main = "Precipitation Stability by Absolute Latitude",
 ylab = "Relative Stability", type = "l");
 
 }
+\references{
+Owens, HL, and RP Guralnick. *Submitted*. *Biodiversity Informatics*.
+}
+\seealso{
+\code{\link{latitudinalMean}} for calculating mean values of rasters for all latitudinal bands.
+}
+\keyword{manip}

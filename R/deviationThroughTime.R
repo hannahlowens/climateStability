@@ -14,6 +14,12 @@ library(raster);
 #'
 #' @return A raster showing the geographic distribution of climate deviation through time for a particular climate variable.
 #'
+#' @keywords manip
+#'
+#' @references Owens, HL, and RP Guralnick. *Submitted*. *Biodiversity Informatics*.
+#'
+#' @seealso \code{\link{precipDeviation}} and \code{\link{temperatureDeviation}} for examples of data produced using this function.
+#'
 #' @examples
 #' \dontrun{
 #' #Even time slices
