@@ -16,12 +16,12 @@ library(raster);
 #'
 #' @keywords manip
 #'
-#' @references Owens, HL, and RP Guralnick. *Submitted*. *Biodiversity Informatics*.
+#' @references Owens, HL, and RP Guralnick. Submitted, Biodiversity Informatics.
 #'
 #' @seealso \code{\link{precipDeviation}} and \code{\link{temperatureDeviation}} for examples of data produced using this function.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' #Even time slices
 #' precipDeviation <- deviationThroughTime("precipfiles/", 1000);
 #'

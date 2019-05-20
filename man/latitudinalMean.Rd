@@ -25,7 +25,7 @@ ylab = "Relative Stability", type = "l");
 
 }
 \references{
-Owens, HL, and RP Guralnick. *Submitted*. *Biodiversity Informatics*.
+Owens, HL, and RP Guralnick. Submitted, Biodiversity Informatics.
 }
 \seealso{
 \code{\link{absLatitudinalMean}} to calculate mean value for each absolute value of latitude.

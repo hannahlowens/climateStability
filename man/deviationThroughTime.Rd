@@ -23,7 +23,7 @@ Make sure that files in the `variableDirectory` are read into `R` in order.
 If you are specifying temporally-uneven time slices with `timeSlicePeriod`, make sure that each number corresponds to the number of years elapsed *between* time slices, *in the same order as the files were read into `R`*. There should be one less number than the number of files.
 }
 \examples{
-\dontrun{
+\donttest{
 #Even time slices
 precipDeviation <- deviationThroughTime("precipfiles/", 1000);
 
@@ -34,7 +34,7 @@ precipDeviationUneven <- deviationThroughTime("unevenPrecipFiles",
 
 }
 \references{
-Owens, HL, and RP Guralnick. *Submitted*. *Biodiversity Informatics*.
+Owens, HL, and RP Guralnick. Submitted, Biodiversity Informatics.
 }
 \seealso{
 \code{\link{precipDeviation}} and \code{\link{temperatureDeviation}} for examples of data produced using this function.

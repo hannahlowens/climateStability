@@ -23,7 +23,7 @@ precipStability <- 1/precipDeviation; #calculate stability from deviation
 
 }
 \references{
-Owens, HL, and RP Guralnick. *Submitted*. *Biodiversity Informatics*.
+Owens, HL, and RP Guralnick. Submitted, Biodiversity Informatics.
 }
 \seealso{
 \code{\link{deviationThroughTime}} for details on the calculation.

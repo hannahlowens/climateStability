@@ -10,7 +10,7 @@ library(raster);
 #'
 #' @keywords manip
 #'
-#' @references Owens, HL, and RP Guralnick. *Submitted*. *Biodiversity Informatics*.
+#' @references Owens, HL, and RP Guralnick. Submitted, Biodiversity Informatics.
 #'
 #' @seealso \code{\link{absLatitudinalMean}} to calculate mean value for each absolute value of latitude.
 #'

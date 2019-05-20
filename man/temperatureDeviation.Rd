@@ -23,7 +23,7 @@ tempStability <- 1/temperatureDeviation; #calculate stability from deviation
 
 }
 \references{
-Owens, HL, and RP Guralnick. *Submitted*. *Biodiversity Informatics*.
+Owens, HL, and RP Guralnick. Submitted, Biodiversity Informatics.
 }
 \seealso{
 \code{\link{deviationThroughTime}} for details on the calculation.

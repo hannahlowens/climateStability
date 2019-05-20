@@ -10,7 +10,7 @@ library(raster);
 #'
 #' @keywords manip
 #'
-#' @references Owens, HL, and RP Guralnick. *Submitted*. *Biodiversity Informatics*.
+#' @references Owens, HL, and RP Guralnick. Submitted, Biodiversity Informatics.
 #'
 #' @examples
 #'

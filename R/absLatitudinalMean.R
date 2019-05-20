@@ -10,7 +10,7 @@ library(raster);
 #'
 #' @keywords manip
 #'
-#' @references Owens, HL, and RP Guralnick. *Submitted*. *Biodiversity Informatics*.
+#' @references Owens, HL, and RP Guralnick. Submitted, Biodiversity Informatics.
 #'
 #' @seealso \code{\link{latitudinalMean}} for calculating mean values of rasters for all latitudinal bands.
 #'

@@ -16,7 +16,7 @@
 #'
 #' @keywords datasets
 #'
-#' @references Owens, HL, and RP Guralnick. *Submitted*. *Biodiversity Informatics*.
+#' @references Owens, HL, and RP Guralnick. Submitted, Biodiversity Informatics.
 #'
 #' @seealso \code{\link{deviationThroughTime}} for details on the calculation.
 #'
