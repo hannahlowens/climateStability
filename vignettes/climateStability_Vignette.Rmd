@@ -49,7 +49,7 @@ unevenTemperatureDeviation <- deviationThroughTime(variableDirectory = "../../Cl
                                                    timeSlicePeriod = c(1000, 1000, 1000, 1000, 5000, 5000, 6000));
 ```
 
-You have been provided with two pre-calculated deviation-through-time estimates from Owens and Guralnick, *Submitted*, *Biodiversity Informatics*. These were calculated from 100-year climate means for 20 1,000-year time slices from 21 kbp to 1 kbp using data from the TRaCE 21k climate experiment, run in the CCSM 3.0 climate model. These layers will be used to illustrate the remaining `climateStability` package functions.
+You have been provided with two pre-calculated deviation-through-time estimates from Owens and Guralnick. Submitted, Biodiversity Informatics. These were calculated from 100-year climate means for 20 1,000-year time slices from 21 kbp to 1 kbp using data from the TRaCE 21k climate experiment, run in the CCSM 3.0 climate model. These layers will be used to illustrate the remaining `climateStability` package functions.
 
 Let's load them into the `R` environment.
 
@@ -59,7 +59,7 @@ data(precipDeviation, package = "climateStability");
 data(temperatureDeviation, package = "climateStability");
 ```
 
-The next step is scaling the deviation through time estimate from 0 to 1, and then take the inverse of the result. This how you estimate stability for a given climate variable, per Owens and Guralnick, *Submitted*, *Biodiversity Informatics*.
+The next step is scaling the deviation through time estimate from 0 to 1, and then take the inverse of the result. This how you estimate stability for a given climate variable, per Owens and Guralnick. Submitted, Biodiversity Informatics.
 
 ```{r calculate stability from deviation}
 precipInvDev <- 1/precipDeviation;

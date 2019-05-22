@@ -12,7 +12,7 @@
 
 <meta name="author" content="Hannah Owens" />
 
-<meta name="date" content="2019-05-16" />
+<meta name="date" content="2019-05-22" />
 
 <title>climateStability Vignette: the Basics</title>
 
@@ -95,7 +95,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">climateStability Vignette: the Basics</h1>
 <h4 class="author">Hannah Owens</h4>
-<h4 class="date">2019-05-16</h4>
+<h4 class="date">2019-05-22</h4>
 
 
 <div id="TOC">
@@ -128,12 +128,12 @@ unevenPrecipDeviation &lt;-<span class="st"> </span><span class="kw">deviationTh
                                               <span class="dt">timeSlicePeriod =</span> <span class="kw">c</span>(<span class="dv">1000</span>, <span class="dv">1000</span>, <span class="dv">1000</span>, <span class="dv">1000</span>, <span class="dv">5000</span>, <span class="dv">5000</span>, <span class="dv">6000</span>));
 unevenTemperatureDeviation &lt;-<span class="st"> </span><span class="kw">deviationThroughTime</span>(<span class="dt">variableDirectory =</span> <span class="st">&quot;../../ClimateStabilityManuscript/tempfilesThinned/&quot;</span>,
                                                    <span class="dt">timeSlicePeriod =</span> <span class="kw">c</span>(<span class="dv">1000</span>, <span class="dv">1000</span>, <span class="dv">1000</span>, <span class="dv">1000</span>, <span class="dv">5000</span>, <span class="dv">5000</span>, <span class="dv">6000</span>));</code></pre></div>
-<p>You have been provided with two pre-calculated deviation-through-time estimates from Owens and Guralnick, <em>Submitted</em>, <em>Biodiversity Informatics</em>. These were calculated from 100-year climate means for 20 1,000-year time slices from 21 kbp to 1 kbp using data from the TRaCE 21k climate experiment, run in the CCSM 3.0 climate model. These layers will be used to illustrate the remaining <code>climateStability</code> package functions.</p>
+<p>You have been provided with two pre-calculated deviation-through-time estimates from Owens and Guralnick. Submitted, Biodiversity Informatics. These were calculated from 100-year climate means for 20 1,000-year time slices from 21 kbp to 1 kbp using data from the TRaCE 21k climate experiment, run in the CCSM 3.0 climate model. These layers will be used to illustrate the remaining <code>climateStability</code> package functions.</p>
 <p>Let’s load them into the <code>R</code> environment.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Using deviationThroughTime</span>
 <span class="kw">data</span>(precipDeviation, <span class="dt">package =</span> <span class="st">&quot;climateStability&quot;</span>);
 <span class="kw">data</span>(temperatureDeviation, <span class="dt">package =</span> <span class="st">&quot;climateStability&quot;</span>);</code></pre></div>
-<p>The next step is scaling the deviation through time estimate from 0 to 1, and then take the inverse of the result. This how you estimate stability for a given climate variable, per Owens and Guralnick, <em>Submitted</em>, <em>Biodiversity Informatics</em>.</p>
+<p>The next step is scaling the deviation through time estimate from 0 to 1, and then take the inverse of the result. This how you estimate stability for a given climate variable, per Owens and Guralnick. Submitted, Biodiversity Informatics.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">precipInvDev &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">/</span>precipDeviation;
 precipStability &lt;-<span class="st"> </span><span class="kw">rescale0to1</span>(precipInvDev);
 
