@@ -70,8 +70,12 @@ deviationThroughTime <- function(variableDirectory, timeSlicePeriod){
     }
     count <- count + 1;
   }
-
-  deviation <- sum(intervalDev)/length(timeSlicePeriod)
+  if (length(timeSlicePeriod) == 1){
+    deviation <- sum(intervalDev)/(timeSlicePeriod*(length(rastList)-1));
+  }
+  else{
+    deviation <- sum(intervalDev)/sum(timeSlicePeriod);
+  }
 
   setwd(homeDir);
   return(deviation);
