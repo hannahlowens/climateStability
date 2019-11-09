@@ -6,6 +6,8 @@
 #'
 #' @param timeSlicePeriod Either a single number, in years, representing the time period elapsed between temporally-even climate variable raster slices, or a vector corresponding to periods, in years, between temporally-uneven time slices.
 #'
+#' @param fileExtension a character that describes the fileExtension corresponding to the all suported formats in \code{\link[raster]{writeFormats}}
+#'
 #' @details Make sure that files in the `variableDirectory` are read into `R` in order.
 #'
 #' If you are specifying temporally-uneven time slices with `timeSlicePeriod`, make sure that each number corresponds to the number of years elapsed *between* time slices, *in the same order as the files were read into `R`*. There should be one less number than the number of files.
@@ -31,11 +33,14 @@
 #'                                               c(1000, 1000, 1000, 1000, 5000, 5000, 6000))
 #'}
 #'
-#'
 #' @importFrom stats sd
 #'
 #' @export
-deviationThroughTime <- function(variableDirectory, timeSlicePeriod){
+deviationThroughTime <- function(variableDirectory, timeSlicePeriod,
+                                 fileExtension = "asc"){
+
+  match.arg(fileExtension, c("grd", "asc", "sdat", "rst", "nc", "tif", "envi",
+                             "bil", "img"))
 
   if (!dir.exists(variableDirectory)){
     stop(variableDirectory, " is not a directory that exists.")
@@ -45,7 +50,7 @@ deviationThroughTime <- function(variableDirectory, timeSlicePeriod){
   }
 
   rastList <- list.files(path = variableDirectory,
-                         pattern = ".asc$")
+                         pattern = paste0(".", fileExtension, "$"))
 
   if(length(timeSlicePeriod) != 1 && length(timeSlicePeriod) != (length(rastList) - 1)){
     stop("The specified timeSlicePeriod object is not of expected length (1 or one less than the number of .asc files in variableDirectory)")

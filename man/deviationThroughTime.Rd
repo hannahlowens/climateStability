@@ -4,12 +4,15 @@
 \alias{deviationThroughTime}
 \title{Calculating Deviation Through Time}
 \usage{
-deviationThroughTime(variableDirectory, timeSlicePeriod)
+deviationThroughTime(variableDirectory, timeSlicePeriod,
+  fileExtension = "asc")
 }
 \arguments{
 \item{variableDirectory}{A directory containing at least two time slice rasters for a given climate variable.}
 
 \item{timeSlicePeriod}{Either a single number, in years, representing the time period elapsed between temporally-even climate variable raster slices, or a vector corresponding to periods, in years, between temporally-uneven time slices.}
+
+\item{fileExtension}{a character that describes the fileExtension corresponding to the all suported formats in \code{\link[raster]{writeFormats}}}
 }
 \value{
 A raster showing the geographic distribution of climate deviation through time for a particular climate variable.
@@ -31,7 +34,6 @@ precipDeviation <- deviationThroughTime("precipfiles/", 1000)
 precipDeviationUneven <- deviationThroughTime("unevenPrecipFiles",
                                               c(1000, 1000, 1000, 1000, 5000, 5000, 6000))
 }
-
 
 }
 \references{
