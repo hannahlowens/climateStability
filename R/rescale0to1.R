@@ -1,4 +1,4 @@
-library(raster);
+library(raster)
 
 #' @title Rescale raster from 0 to 1
 #'
@@ -14,17 +14,17 @@ library(raster);
 #'
 #' @examples
 #'
-#' data(precipDeviation);
-#' precipStability <- 1/precipDeviation;
-#' relativeClimateStability <- rescale0to1(precipStability);
+#' data(precipDeviation)
+#' precipStability <- 1/precipDeviation
+#' relativeClimateStability <- rescale0to1(precipStability)
 #'
 #' @export
 
 rescale0to1 <- function(rasterForCalculation){
   if (class(rasterForCalculation) != "RasterLayer"){
-    warning("Supplied argument is not a raster./n", sep = "");
-    return(NULL);
+    warning("Supplied argument is not a raster./n", sep = "")
+    return(NULL)
   }
   rescaledRaster <- (rasterForCalculation - rasterForCalculation@data@min)/(rasterForCalculation@data@max - rasterForCalculation@data@min)
-  return(rescaledRaster);
+  return(rescaledRaster)
 }

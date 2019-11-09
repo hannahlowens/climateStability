@@ -1,4 +1,4 @@
-library(raster);
+library(raster)
 
 #' @title Calculating Deviation Through Time
 #'
@@ -23,7 +23,7 @@ library(raster);
 #' @examples
 #' \donttest{
 #' #Even time slices
-#' precipDeviation <- deviationThroughTime("precipfiles/", 1000);
+#' precipDeviation <- deviationThroughTime("precipfiles/", 1000)
 #'
 #' #Uneven time slices
 #' precipDeviationUneven <- deviationThroughTime("unevenPrecipFiles",
@@ -37,46 +37,46 @@ library(raster);
 #' @export
 
 deviationThroughTime <- function(variableDirectory, timeSlicePeriod){
-  homeDir <- getwd();
+  homeDir <- getwd()
   if (!file.exists(variableDirectory)){
-    setwd(homeDir);
-    warning(paste(variableDirectory, " is not a directory that exists.", sep = ""));
-    return(NULL);
+    setwd(homeDir)
+    warning(paste(variableDirectory, " is not a directory that exists.", sep = ""))
+    return(NULL)
   }
   if(!is.numeric(timeSlicePeriod)){
-      setwd(homeDir);
-      warning(paste(timeSlicePeriod, " is not numeric.", sep = ""));
-      return(NULL);
+      setwd(homeDir)
+      warning(paste(timeSlicePeriod, " is not numeric.", sep = ""))
+      return(NULL)
   }
 
-  setwd(variableDirectory);
+  setwd(variableDirectory)
   rastList <- list.files(pattern = ".asc$")
 
   if(length(timeSlicePeriod) != 1 && length(timeSlicePeriod) != (length(rastList) - 1)){
-    setwd(homeDir);
-    warning(paste("The specified timeSlicePeriod object is not of expected length (1 or one less than the number of .asc files in variableDirectory)"));
-    return(NULL);
+    setwd(homeDir)
+    warning(paste("The specified timeSlicePeriod object is not of expected length (1 or one less than the number of .asc files in variableDirectory)"))
+    return(NULL)
   }
 
-  varStack <- stack(rastList);
-  intervalDev <- varStack[[-1]];
+  varStack <- stack(rastList)
+  intervalDev <- varStack[[-1]]
   count <- 2
   while (count <= length(rastList)){
     if(length(timeSlicePeriod) == 1){
-      intervalDev[[(count - 1)]] <- raster::calc(varStack[[(count-1):count]], sd)/timeSlicePeriod[[1]];
+      intervalDev[[(count - 1)]] <- raster::calc(varStack[[(count-1):count]], sd)/timeSlicePeriod[[1]]
     }
     else{
-      intervalDev[[(count - 1)]] <- raster::calc(varStack[[(count-1):count]], sd)/timeSlicePeriod[[(count-1)]];
+      intervalDev[[(count - 1)]] <- raster::calc(varStack[[(count-1):count]], sd)/timeSlicePeriod[[(count-1)]]
     }
-    count <- count + 1;
+    count <- count + 1
   }
   if (length(timeSlicePeriod) == 1){
-    deviation <- sum(intervalDev)/(timeSlicePeriod*(length(rastList)-1));
+    deviation <- sum(intervalDev)/(timeSlicePeriod*(length(rastList)-1))
   }
   else{
-    deviation <- sum(intervalDev)/sum(timeSlicePeriod);
+    deviation <- sum(intervalDev)/sum(timeSlicePeriod)
   }
 
-  setwd(homeDir);
-  return(deviation);
+  setwd(homeDir)
+  return(deviation)
 }
