@@ -8,6 +8,8 @@ Description: Climate stability measures are not formalized in the literature and
   encapsulating climate change as a series of time slices. The methods follow
   Owens and Guralnick <doi:10.17161/bi.v14i0.9786> Biodiversity Informatics.
 Depends: R (>= 3.5.0)
+URL: https://github.com/hannahlowens/climateStability
+BugReports: https://github.com/hannahlowens/climateStability/issues
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
