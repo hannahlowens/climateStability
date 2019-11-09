@@ -36,25 +36,19 @@
 #'
 #' @export
 deviationThroughTime <- function(variableDirectory, timeSlicePeriod){
-  homeDir <- getwd()
-  if (!file.exists(variableDirectory)){
-    setwd(homeDir)
-    warning(paste(variableDirectory, " is not a directory that exists.", sep = ""))
-    return(NULL)
+
+  if (!dir.exists(variableDirectory)){
+    stop(variableDirectory, " is not a directory that exists.")
   }
   if(!is.numeric(timeSlicePeriod)){
-      setwd(homeDir)
-      warning(paste(timeSlicePeriod, " is not numeric.", sep = ""))
-      return(NULL)
+      stop(timeSlicePeriod, " is not numeric.")
   }
 
-  setwd(variableDirectory)
-  rastList <- list.files(pattern = ".asc$")
+  rastList <- list.files(path = variableDirectory,
+                         pattern = ".asc$")
 
   if(length(timeSlicePeriod) != 1 && length(timeSlicePeriod) != (length(rastList) - 1)){
-    setwd(homeDir)
-    warning(paste("The specified timeSlicePeriod object is not of expected length (1 or one less than the number of .asc files in variableDirectory)"))
-    return(NULL)
+    stop("The specified timeSlicePeriod object is not of expected length (1 or one less than the number of .asc files in variableDirectory)")
   }
 
   varStack <- raster::stack(rastList)
@@ -76,6 +70,5 @@ deviationThroughTime <- function(variableDirectory, timeSlicePeriod){
     deviation <- sum(intervalDev)/sum(timeSlicePeriod)
   }
 
-  setwd(homeDir)
   return(deviation)
 }
