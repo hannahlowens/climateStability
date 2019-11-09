@@ -1,6 +1,6 @@
 Package: climateStability
 Title: Estimating Climate Stability from Climate Model Data
-Version: 0.1.2
+Version: 0.1.3
 Authors@R: person("Hannah", "Owens", email = "hannah.owens@gmail.com", role = c("aut", "cre"))
 Description: Climate stability measures are not formalized in the literature and
   tools for generating stability metrics from existing data are nascent.
