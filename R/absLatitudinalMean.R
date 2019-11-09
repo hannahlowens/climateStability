@@ -1,5 +1,3 @@
-library(raster)
-
 #' @title absLatitudinalMean
 #'
 #' @description A function to calculate mean values of a raster at the absolute value of latitude, at the resolution of a given raster layer.
@@ -23,11 +21,10 @@ library(raster)
 #' ylab = "Relative Stability", type = "l")
 #'
 #' @export
-
 absLatitudinalMean <- function(rasterForCalculation){
-  pointExt <- as.data.frame(rasterToPoints(rasterForCalculation)[,1:3])
+  pointExt <- as.data.frame(raster::rasterToPoints(rasterForCalculation)[,1:3])
   pointExtData <- as.data.frame(pointExt)
-  latData <- matrix(nrow = length(unique(abs(pointExtData$y))), ncol = 2);
+  latData <- matrix(nrow = length(unique(abs(pointExtData$y))), ncol = 2)
   latData[,1] <- sort(unique(abs(pointExtData$y)))
   colnames(latData) <- c("Latitude",  "Value")
   lat <- sort(unique(abs(pointExtData$y)))
@@ -37,5 +34,5 @@ absLatitudinalMean <- function(rasterForCalculation){
       mean(pointExtData[abs(pointExtData$y)==lat[[count]],3]))
     count <- count + 1
   }
-  return(latData);
+  return(latData)
 }

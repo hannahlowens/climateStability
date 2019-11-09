@@ -1,5 +1,3 @@
-library(raster)
-
 #' @title Rescale raster from 0 to 1
 #'
 #' @description A function to rescale a raster from 0 to 1. This is done using the formula (value-min)/(max-min).
@@ -19,7 +17,6 @@ library(raster)
 #' relativeClimateStability <- rescale0to1(precipStability)
 #'
 #' @export
-
 rescale0to1 <- function(rasterForCalculation){
   if (class(rasterForCalculation) != "RasterLayer"){
     warning("Supplied argument is not a raster./n", sep = "")

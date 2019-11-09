@@ -1,5 +1,3 @@
-library(raster)
-
 #' @title Calculating Deviation Through Time
 #'
 #' @description A function that reads time-slice rasters of data for a given climate (typically processed data from a climate model run, such as the results of an analysis using PaleoView (Fordham, *et al.* 2017, Ecography)) in a given directory and calculates average deviation per year across time slices.
@@ -30,12 +28,10 @@ library(raster)
 #'                                               c(1000, 1000, 1000, 1000, 5000, 5000, 6000))
 #'}
 #'
-#' @import raster
 #'
 #' @importFrom stats sd
 #'
 #' @export
-
 deviationThroughTime <- function(variableDirectory, timeSlicePeriod){
   homeDir <- getwd()
   if (!file.exists(variableDirectory)){
@@ -58,7 +54,7 @@ deviationThroughTime <- function(variableDirectory, timeSlicePeriod){
     return(NULL)
   }
 
-  varStack <- stack(rastList)
+  varStack <- raster::stack(rastList)
   intervalDev <- varStack[[-1]]
   count <- 2
   while (count <= length(rastList)){

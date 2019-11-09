@@ -17,11 +17,11 @@ A function to calculate mean values of a raster at the absolute value of latitud
 }
 \examples{
 
-data(precipDeviation);
-precipStability <- 1/precipDeviation;
-alm <- absLatitudinalMean(rasterForCalculation = precipStability);
+data(precipDeviation)
+precipStability <- 1/precipDeviation
+alm <- absLatitudinalMean(rasterForCalculation = precipStability)
 plot(alm, main = "Precipitation Stability by Absolute Latitude",
-ylab = "Relative Stability", type = "l");
+ylab = "Relative Stability", type = "l")
 
 }
 \references{

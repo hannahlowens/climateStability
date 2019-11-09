@@ -17,9 +17,9 @@ A function to rescale a raster from 0 to 1. This is done using the formula (valu
 }
 \examples{
 
-data(precipDeviation);
-precipStability <- 1/precipDeviation;
-relativeClimateStability <- rescale0to1(precipStability);
+data(precipDeviation)
+precipStability <- 1/precipDeviation
+relativeClimateStability <- rescale0to1(precipStability)
 
 }
 \references{

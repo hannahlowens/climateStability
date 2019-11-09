@@ -25,12 +25,13 @@ If you are specifying temporally-uneven time slices with `timeSlicePeriod`, make
 \examples{
 \donttest{
 #Even time slices
-precipDeviation <- deviationThroughTime("precipfiles/", 1000);
+precipDeviation <- deviationThroughTime("precipfiles/", 1000)
 
 #Uneven time slices
 precipDeviationUneven <- deviationThroughTime("unevenPrecipFiles",
                                               c(1000, 1000, 1000, 1000, 5000, 5000, 6000))
 }
+
 
 }
 \references{
