@@ -22,6 +22,7 @@
 #' plot(latMean, main = "Precipitation Stability by Latitude",
 #' ylab = "Relative Stability", type = "l")
 #'
+#' @importFrom raster raster
 #' @export
 latitudinalMean <- function(rasterForCalculation){
   pointExt <- as.data.frame(raster::rasterToPoints(rasterForCalculation)[,1:3])
