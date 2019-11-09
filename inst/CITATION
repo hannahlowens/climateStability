@@ -1,0 +1,14 @@
+citHeader("To cite climateStability in publications use:")
+
+citEntry(
+  entry    = "Article",
+  title    = "climateStability: An R package to estimate climate stability from time-slice climatologies",
+  author   = c(person("Hannah L. Owens"), person("Robert Guralnick")),
+  journal  = "Biodiversity Informatics",
+  year     = "2019",
+  volume   = "14",
+  pages    = "8-13",
+  doi      = "10.17161/bi.v14i0.9786",
+  textVersion = paste("Owens, H.L., Guralnick, R., 2019. climateStability: An R package to estimate climate stability from time-slice climatologies. Biodiversity Informatics 14, 8–13. https://doi.org/10.17161/bi.v14i0.9786"
+  )
+)

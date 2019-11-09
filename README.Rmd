@@ -57,3 +57,17 @@ For more information, refer to the vignette.
 ```{r vignette, eval = F}
 browseVignettes("climateStability")
 ```
+
+## Citation
+
+If you use the package you can cite the article that describes the package:
+
+> Owens, H.L., Guralnick, R., 2019. climateStability: An R package to estimate
+> climate stability from time-slice climatologies. Biodiversity Informatics
+> 14, 8–13. https://doi.org/10.17161/bi.v14i0.9786
+
+You can also access the citation information through R using the following command:
+
+```{r citation_call}
+citation(package = "climateStability")
+```

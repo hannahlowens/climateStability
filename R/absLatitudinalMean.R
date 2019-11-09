@@ -8,7 +8,10 @@
 #'
 #' @keywords manip
 #'
-#' @references Owens, HL, and RP Guralnick. Submitted, Biodiversity Informatics.
+#' @references
+#' Owens, H.L., Guralnick, R., 2019. climateStability: An R package to estimate
+#' climate stability from time-slice climatologies. Biodiversity Informatics
+#' 14, 8–13. https://doi.org/10.17161/bi.v14i0.9786
 #'
 #' @seealso \code{\link{latitudinalMean}} for calculating mean values of rasters for all latitudinal bands.
 #'
