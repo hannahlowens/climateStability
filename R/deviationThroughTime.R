@@ -1,5 +1,3 @@
-library(raster);
-
 #' @title Calculating Deviation Through Time
 #'
 #' @description A function that reads time-slice rasters of data for a given climate (typically processed data from a climate model run, such as the results of an analysis using PaleoView (Fordham, *et al.* 2017, Ecography)) in a given directory and calculates average deviation per year across time slices.
@@ -7,6 +5,8 @@ library(raster);
 #' @param variableDirectory A directory containing at least two time slice rasters for a given climate variable.
 #'
 #' @param timeSlicePeriod Either a single number, in years, representing the time period elapsed between temporally-even climate variable raster slices, or a vector corresponding to periods, in years, between temporally-uneven time slices.
+#'
+#' @param fileExtension a character that describes the fileExtension corresponding to the all suported formats in \code{\link[raster]{writeFormats}}
 #'
 #' @details Make sure that files in the `variableDirectory` are read into `R` in order.
 #'
@@ -16,67 +16,64 @@ library(raster);
 #'
 #' @keywords manip
 #'
-#' @references Owens, HL, and RP Guralnick. Submitted, Biodiversity Informatics.
+#' @references
+#' Owens, H.L., Guralnick, R., 2019. climateStability: An R package to estimate
+#' climate stability from time-slice climatologies. Biodiversity Informatics
+#' 14, 8–13. https://doi.org/10.17161/bi.v14i0.9786
 #'
 #' @seealso \code{\link{precipDeviation}} and \code{\link{temperatureDeviation}} for examples of data produced using this function.
 #'
 #' @examples
 #' \donttest{
 #' #Even time slices
-#' precipDeviation <- deviationThroughTime("precipfiles/", 1000);
+#' precipDeviation <- deviationThroughTime("precipfiles/", 1000)
 #'
 #' #Uneven time slices
 #' precipDeviationUneven <- deviationThroughTime("unevenPrecipFiles",
 #'                                               c(1000, 1000, 1000, 1000, 5000, 5000, 6000))
 #'}
 #'
-#' @import raster
-#'
 #' @importFrom stats sd
 #'
 #' @export
+deviationThroughTime <- function(variableDirectory, timeSlicePeriod,
+                                 fileExtension = "asc"){
 
-deviationThroughTime <- function(variableDirectory, timeSlicePeriod){
-  homeDir <- getwd();
-  if (!file.exists(variableDirectory)){
-    setwd(homeDir);
-    warning(paste(variableDirectory, " is not a directory that exists.", sep = ""));
-    return(NULL);
+  match.arg(fileExtension, c("grd", "asc", "sdat", "rst", "nc", "tif", "envi",
+                             "bil", "img"))
+
+  if (!dir.exists(variableDirectory)){
+    stop(variableDirectory, " is not a directory that exists.")
   }
   if(!is.numeric(timeSlicePeriod)){
-      setwd(homeDir);
-      warning(paste(timeSlicePeriod, " is not numeric.", sep = ""));
-      return(NULL);
+      stop(timeSlicePeriod, " is not numeric.")
   }
 
-  setwd(variableDirectory);
-  rastList <- list.files(pattern = ".asc$")
+  rastList <- list.files(path = variableDirectory,
+                         pattern = paste0(".", fileExtension, "$"))
 
   if(length(timeSlicePeriod) != 1 && length(timeSlicePeriod) != (length(rastList) - 1)){
-    setwd(homeDir);
-    warning(paste("The specified timeSlicePeriod object is not of expected length (1 or one less than the number of .asc files in variableDirectory)"));
-    return(NULL);
+    stop("The specified timeSlicePeriod object is not of expected length (1 or one less than the number of .asc files in variableDirectory)")
   }
 
-  varStack <- stack(rastList);
-  intervalDev <- varStack[[-1]];
+  varStack <- raster::stack(rastList)
+  intervalDev <- varStack[[-1]]
   count <- 2
   while (count <= length(rastList)){
     if(length(timeSlicePeriod) == 1){
-      intervalDev[[(count - 1)]] <- raster::calc(varStack[[(count-1):count]], sd)/timeSlicePeriod[[1]];
+      intervalDev[[(count - 1)]] <- raster::calc(varStack[[(count-1):count]], sd)/timeSlicePeriod[[1]]
     }
     else{
-      intervalDev[[(count - 1)]] <- raster::calc(varStack[[(count-1):count]], sd)/timeSlicePeriod[[(count-1)]];
+      intervalDev[[(count - 1)]] <- raster::calc(varStack[[(count-1):count]], sd)/timeSlicePeriod[[(count-1)]]
     }
-    count <- count + 1;
+    count <- count + 1
   }
   if (length(timeSlicePeriod) == 1){
-    deviation <- sum(intervalDev)/(timeSlicePeriod*(length(rastList)-1));
+    deviation <- sum(intervalDev)/(timeSlicePeriod*(length(rastList)-1))
   }
   else{
-    deviation <- sum(intervalDev)/sum(timeSlicePeriod);
+    deviation <- sum(intervalDev)/sum(timeSlicePeriod)
   }
 
-  setwd(homeDir);
-  return(deviation);
+  return(deviation)
 }

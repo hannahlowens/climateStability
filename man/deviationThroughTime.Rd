@@ -4,12 +4,15 @@
 \alias{deviationThroughTime}
 \title{Calculating Deviation Through Time}
 \usage{
-deviationThroughTime(variableDirectory, timeSlicePeriod)
+deviationThroughTime(variableDirectory, timeSlicePeriod,
+  fileExtension = "asc")
 }
 \arguments{
 \item{variableDirectory}{A directory containing at least two time slice rasters for a given climate variable.}
 
 \item{timeSlicePeriod}{Either a single number, in years, representing the time period elapsed between temporally-even climate variable raster slices, or a vector corresponding to periods, in years, between temporally-uneven time slices.}
+
+\item{fileExtension}{a character that describes the fileExtension corresponding to the all suported formats in \code{\link[raster]{writeFormats}}}
 }
 \value{
 A raster showing the geographic distribution of climate deviation through time for a particular climate variable.
@@ -25,7 +28,7 @@ If you are specifying temporally-uneven time slices with `timeSlicePeriod`, make
 \examples{
 \donttest{
 #Even time slices
-precipDeviation <- deviationThroughTime("precipfiles/", 1000);
+precipDeviation <- deviationThroughTime("precipfiles/", 1000)
 
 #Uneven time slices
 precipDeviationUneven <- deviationThroughTime("unevenPrecipFiles",
@@ -34,7 +37,9 @@ precipDeviationUneven <- deviationThroughTime("unevenPrecipFiles",
 
 }
 \references{
-Owens, HL, and RP Guralnick. Submitted, Biodiversity Informatics.
+Owens, H.L., Guralnick, R., 2019. climateStability: An R package to estimate
+climate stability from time-slice climatologies. Biodiversity Informatics
+14, 8–13. https://doi.org/10.17161/bi.v14i0.9786
 }
 \seealso{
 \code{\link{precipDeviation}} and \code{\link{temperatureDeviation}} for examples of data produced using this function.
