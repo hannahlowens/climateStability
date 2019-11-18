@@ -18,7 +18,6 @@ vignette: >
 ```{r setup, include=FALSE}
 library(climateStability);
 library(raster);
-library(rangeBuilder);
 knitr::opts_chunk$set(error = TRUE);
 ```
 
@@ -85,11 +84,11 @@ This is what climate the stability rasters look like.
 
 ```{r plot stability rasters, fig.height=4, fig.width=8}
 plot(precipStability, main = "Relative Precipitation Stability");
-plot(gshhs, add = T)
+plot(rangeBuilder::gshhs, add = T)
 plot(tempStability, main = "Relative Temperature Stability");
-plot(gshhs, add = T)
+plot(rangeBuilder::gshhs, add = T)
 plot(climateStability, main = "Overall Relative Climate Stability");
-plot(gshhs, add = T)
+plot(rangeBuilder::gshhs, add = T)
 ```
 
 

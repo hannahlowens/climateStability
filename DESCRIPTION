@@ -16,6 +16,7 @@ LazyData: true
 Imports:
   raster
 Suggests:
-  rangeBuilder
+  rangeBuilder,
+  knitr
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
