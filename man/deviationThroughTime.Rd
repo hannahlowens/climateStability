@@ -4,8 +4,7 @@
 \alias{deviationThroughTime}
 \title{Calculating Deviation Through Time}
 \usage{
-deviationThroughTime(variableDirectory, timeSlicePeriod,
-  fileExtension = "asc")
+deviationThroughTime(variableDirectory, timeSlicePeriod, fileExtension = "asc")
 }
 \arguments{
 \item{variableDirectory}{A directory containing at least two time slice rasters for a given climate variable.}

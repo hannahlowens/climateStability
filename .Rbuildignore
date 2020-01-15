@@ -5,3 +5,4 @@
 ^_config.yml$
 ^cran-comments.md$
 ^docs$
+^CRAN-RELEASE$

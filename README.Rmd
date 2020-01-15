@@ -30,16 +30,11 @@ devtools::install_github("hannahlowens/climateStability")
 This is a basic example which shows you how to calculate climate stability using time-slice datasets for two variables:
 
 ```{r example, eval=FALSE}
-# Set the working directory where you climate data are located (one sub-folder per variable)
-dir <- "yourDirectory"
-
 # First, calculate deviation through time using even time slices
-precipDeviation <- deviationThroughTime(variableDirectory = 
-                                          paste(dir, "../../ClimateStabilityManuscript/precipfiles/", sep = ""),
-                                        timeSlicePeriod = 1000);
-temperatureDeviation <- deviationThroughTime(variableDirectory = 
-                                               paste(dir, "../../ClimateStabilityManuscript/tempfiles/", sep = ""),
-                                             timeSlicePeriod = 1000);
+precipDeviation <- deviationThroughTime(variableDirectory = "../ClimateStabilityManuscript/precipfiles/",
+                                        timeSlicePeriod = 1000, fileExtension = "asc");
+temperatureDeviation <- deviationThroughTime(variableDirectory = "../ClimateStabilityManuscript/tempfiles/",
+                                             timeSlicePeriod = 1000, fileExtension = "asc");
 
 # Next, calculate stability for each variable (the inverse of deviation)
 precipInvDev <- 1/precipDeviation;
