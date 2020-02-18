@@ -1,3 +1,8 @@
+# climateStability 0.1.4.9000
+
+* Added error checking and documentation to emphasize that `deviationThroughTime()` needs at least two
+raster layers
+
 # climateStability 0.1.3
 
 * Fix typos in vignettes

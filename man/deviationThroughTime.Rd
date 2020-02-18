@@ -22,7 +22,7 @@ A function that reads time-slice rasters of data for a given climate (typically 
 \details{
 Make sure that files in the `variableDirectory` are read into `R` in order.
 
-If you are specifying temporally-uneven time slices with `timeSlicePeriod`, make sure that each number corresponds to the number of years elapsed *between* time slices, *in the same order as the files were read into `R`*. There should be one less number than the number of files.
+If you are specifying temporally-uneven time slices with `timeSlicePeriod`, make sure that each number corresponds to the number of years elapsed *between* time slices, *in the same order as the files were read into `R`*. There should be one less number than the number of files, and you must have at least three files in the directory.
 }
 \examples{
 \donttest{
