@@ -36,13 +36,9 @@ precipDeviation <- deviationThroughTime(variableDirectory = "../ClimateStability
 temperatureDeviation <- deviationThroughTime(variableDirectory = "../ClimateStabilityManuscript/tempfiles/",
                                              timeSlicePeriod = 1000, fileExtension = "asc");
 
-# Next, calculate stability for each variable (the inverse of deviation)
-precipInvDev <- 1/precipDeviation;
-tempInvDev <- 1/temperatureDeviation;
-
-# Then rescale the stability estimates between 0 and 1
-precipStability <- rescale0to1(precipInvDev);
-tempStability <- rescale0to1(tempInvDev);
+# Next, calculate stability for each variable (the inverse of deviation, scaled to between 0 and 1)
+precipInvDev <- stabilityCalc(precipDeviation);
+tempInvDev <- stabilityCalc(temperatureDeviation);
 
 # Finally, multiply them together and rescale to estimate relative climate stability
 climateStability <- rescale0to1(precipStability * tempStability)

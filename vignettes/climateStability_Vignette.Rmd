@@ -58,14 +58,12 @@ data(precipDeviation, package = "climateStability");
 data(temperatureDeviation, package = "climateStability");
 ```
 
-The next step is scaling the deviation through time estimate from 0 to 1, and then take the inverse of the result. This how you estimate stability for a given climate variable, per Owens and Guralnick. Submitted, Biodiversity Informatics.
+The next step is scaling the deviation through time estimate from 0 to 1, and then take the inverse of the result. This how you estimate stability for a given climate variable, per Owens and Guralnick, 2019. Biodiversity Informatics.
 
 ```{r calculate stability from deviation}
-precipInvDev <- 1/precipDeviation;
-precipStability <- rescale0to1(precipInvDev);
+precipStability <- stabilityCalc(precipDeviation);
 
-tempInvDev <- 1/temperatureDeviation;
-tempStability <- rescale0to1(tempInvDev);
+tempStability <- stabilityCalc(temperatureDeviation);
 ```
 
 Finally, to estimate climatic stability, multiply the individual climate variable stability estimates together.

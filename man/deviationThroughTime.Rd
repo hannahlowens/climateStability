@@ -2,7 +2,7 @@
 % Please edit documentation in R/deviationThroughTime.R
 \name{deviationThroughTime}
 \alias{deviationThroughTime}
-\title{Calculating Deviation Through Time}
+\title{Calculating deviation through time}
 \usage{
 deviationThroughTime(variableDirectory, timeSlicePeriod, fileExtension = "asc")
 }

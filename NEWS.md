@@ -2,6 +2,9 @@
 
 * Added error checking and documentation to emphasize that `deviationThroughTime()` needs at least two
 raster layers
+* Updated the process of calculating stability from `deviationThroughTime()` so that it only requires
+one step, via the function `stabilityCalc()`. This calculation is more robust to 0 values in the 
+raster that results from `deviationThroughTime`.
 
 # climateStability 0.1.3
 

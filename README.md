@@ -19,28 +19,18 @@ devtools::install_github("hannahlowens/climateStability")
 ## Example
 
 This is a basic example which shows you how to calculate climate
-stability using time-slice datasets for two
-variables:
+stability using time-slice datasets for two variables:
 
 ``` r
-# Set the working directory where you climate data are located (one sub-folder per variable)
-dir <- "yourDirectory"
-
 # First, calculate deviation through time using even time slices
-precipDeviation <- deviationThroughTime(variableDirectory = 
-                                          paste(dir, "../../ClimateStabilityManuscript/precipfiles/", sep = ""),
-                                        timeSlicePeriod = 1000);
-temperatureDeviation <- deviationThroughTime(variableDirectory = 
-                                               paste(dir, "../../ClimateStabilityManuscript/tempfiles/", sep = ""),
-                                             timeSlicePeriod = 1000);
+precipDeviation <- deviationThroughTime(variableDirectory = "../ClimateStabilityManuscript/precipfiles/",
+                                        timeSlicePeriod = 1000, fileExtension = "asc");
+temperatureDeviation <- deviationThroughTime(variableDirectory = "../ClimateStabilityManuscript/tempfiles/",
+                                             timeSlicePeriod = 1000, fileExtension = "asc");
 
-# Next, calculate stability for each variable (the inverse of deviation)
-precipInvDev <- 1/precipDeviation;
-tempInvDev <- 1/temperatureDeviation;
-
-# Then rescale the stability estimates between 0 and 1
-precipStability <- rescale0to1(precipInvDev);
-tempStability <- rescale0to1(tempInvDev);
+# Next, calculate stability for each variable (the inverse of deviation, scaled to between 0 and 1)
+precipInvDev <- stabilityCalc(precipDeviation);
+tempInvDev <- stabilityCalc(temperatureDeviation);
 
 # Finally, multiply them together and rescale to estimate relative climate stability
 climateStability <- rescale0to1(precipStability * tempStability)
@@ -69,8 +59,8 @@ citation(package = "climateStability")
 #> 
 #> To cite climateStability in publications use:
 #> 
-#>   Owens, H.L., Guralnick, R., 2019. climateStability: An R package
-#>   to estimate climate stability from time-slice climatologies.
+#>   Owens, H.L., Guralnick, R., 2019. climateStability: An R package to
+#>   estimate climate stability from time-slice climatologies.
 #>   Biodiversity Informatics 14, 8–13.
 #>   https://doi.org/10.17161/bi.v14i0.9786
 #> 
