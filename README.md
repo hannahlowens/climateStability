@@ -1,7 +1,7 @@
 <!-- badges: start -->
 
 [![R build
-status](https://github.com/hannahlowens/climateDatbility/workflows/R-CMD-check/badge.svg)](https://github.com/hannahlowens/climateDatbility/actions)
+status](https://github.com/hannahlowens/climateDatbility/workflows/R-CMD-check/badge.svg)](https://github.com/hannahlowens/climateStability/actions)
 [![cran
 version](https://www.r-pkg.org/badges/version/climateDatbility)](https://cran.r-project.org/package=occCite)
 [![rstudio mirror
