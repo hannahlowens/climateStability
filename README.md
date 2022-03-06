@@ -1,3 +1,5 @@
+<!-- badges: start -->
+
 [![R build
 status](https://github.com/hannahlowens/climateDatbility/workflows/R-CMD-check/badge.svg)](https://github.com/hannahlowens/climateDatbility/actions)
 [![cran
