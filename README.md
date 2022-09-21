@@ -1,12 +1,9 @@
 <!-- badges: start -->
 
-[![R build status](https://github.com/hannahlowens/climateDatbility/workflows/R-CMD-check/badge.svg)](https://github.com/hannahlowens/climateStability/actions)
-[![cran version](https://www.r-pkg.org/badges/version/climateDatbility)](https://cran.r-project.org/package=climateStability)
-[![rstudio mirror
-downloads](https://cranlogs.r-pkg.org/badges/climateDatbility)](https://github.com/r-hub/cranlogs.app)
-[![Project Status: Active – The project has reached a stable, usable
-state and is being actively
-developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![R build status](https://github.com/hannahlowens/climateStability/workflows/R-CMD-check/badge.svg)](https://github.com/hannahlowens/climateStability/actions)
+[![cran version](https://www.r-pkg.org/badges/version/climateStability)](https://cran.r-project.org/package=climateStability)
+[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/climateStability)](https://github.com/r-hub/cranlogs.app)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
 # climateStability
 
