@@ -3,7 +3,7 @@
 [![R build
 status](https://github.com/hannahlowens/climateDatbility/workflows/R-CMD-check/badge.svg)](https://github.com/hannahlowens/climateStability/actions)
 [![cran
-version](https://www.r-pkg.org/badges/version/climateDatbility)](https://cran.r-project.org/package=occCite)
+version](https://www.r-pkg.org/badges/version/climateDatbility)](https://cran.r-project.org/package=climateStability)
 [![rstudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/climateDatbility)](https://github.com/r-hub/cranlogs.app)
 [![Project Status: Active – The project has reached a stable, usable
