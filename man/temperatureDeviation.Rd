@@ -4,7 +4,9 @@
 \name{temperatureDeviation}
 \alias{temperatureDeviation}
 \title{Worldwide deviation in mean annual temperature over the last 21,000 years}
-\format{An object of class \code{"raster"}}
+\format{
+An object of class \code{"raster"}
+}
 \usage{
 data(temperatureDeviation)
 }

@@ -4,7 +4,9 @@
 \name{precipDeviation}
 \alias{precipDeviation}
 \title{Worldwide deviation in annual precipitation over the last 21,000 years}
-\format{An object of class \code{"raster"}}
+\format{
+An object of class \code{"raster"}
+}
 \usage{
 data(precipDeviation)
 }
