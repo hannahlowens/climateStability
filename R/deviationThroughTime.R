@@ -33,7 +33,7 @@
 #'                                               c(1000, 1000, 1000, 1000, 5000, 5000, 6000))
 #'}
 #'
-#' @importFrom stats sd
+#' @importFrom terra rast stdev
 #'
 #' @export
 deviationThroughTime <- function(variableDirectory, timeSlicePeriod,
@@ -61,22 +61,20 @@ deviationThroughTime <- function(variableDirectory, timeSlicePeriod,
     stop("The specified timeSlicePeriod object is not of expected length (1 or one less than the number of .asc files in variableDirectory)")
   }
   print(rastList)
-  varStack <- raster::stack(rastList)
+  varStack <- terra::rast(rastList)
   intervalDev <- varStack[[-1]]
   count <- 2
   while (count <= length(rastList)){
     if(length(timeSlicePeriod) == 1){
-      intervalDev[[(count - 1)]] <- raster::calc(varStack[[(count-1):count]], sd)/timeSlicePeriod[[1]]
-    }
-    else{
-      intervalDev[[(count - 1)]] <- raster::calc(varStack[[(count-1):count]], sd)/timeSlicePeriod[[(count-1)]]
+      intervalDev[[(count - 1)]] <- terra::stdev(varStack[[(count-1):count]], na.rm = TRUE)/timeSlicePeriod[[1]]
+    } else{
+      intervalDev[[(count - 1)]] <- terra::stdev(varStack[[(count-1):count]], na.rm = TRUE)/timeSlicePeriod[[(count-1)]]
     }
     count <- count + 1
   }
   if (length(timeSlicePeriod) == 1){
     deviation <- sum(intervalDev)/(timeSlicePeriod*(length(rastList)-1))
-  }
-  else{
+  } else{
     deviation <- sum(intervalDev)/sum(timeSlicePeriod)
   }
 

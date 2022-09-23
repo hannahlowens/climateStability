@@ -2,7 +2,8 @@
 #'
 #' @description A function to calculate stability based on the results of `deviationThroughTime`.
 #'
-#' @param rasterForCalculation A raster that contains data from which stability is to be calculated.
+#' @param rasterForCalculation A `SpatRaster` object that contains data from which stability is to be
+#' calculated.
 #'
 #' @details This formula takes the inverse of the raster and rescales it from 0 to 1.This function is
 #' necessary in cases where there is no deviation in some cells. If time slices are very close
@@ -17,15 +18,17 @@
 #' Owens, H.L., Guralnick, R., 2019. climateStability: An R package to estimate
 #' climate stability from time-slice climatologies. Biodiversity Informatics
 #' 14, 8–13. https://doi.org/10.17161/bi.v14i0.9786
+#'
 #' @examples
 #'
-#' data(precipDeviation)
+#' precipDeviation <- terra::rast(system.file("data/precipDeviation.asc",
+#'                                            package = "climateStability"))
 #' precipStability <- stabilityCalc(precipDeviation)
 #'
 #' @export
 stabilityCalc <- function(rasterForCalculation){
-  if (class(rasterForCalculation) != "RasterLayer"){
-    warning("Supplied argument is not a raster./n", sep = "")
+  if (class(rasterForCalculation) != "SpatRaster"){
+    warning("Supplied argument is not a SpatRaster./n", sep = "")
     return(NULL)
   }
 
@@ -41,7 +44,7 @@ stabilityCalc <- function(rasterForCalculation){
   temp[is.na(temp)] <- 1
 
   #Mask to extent of original file
-  finalRaster <- raster::mask(temp, rasterForCalculation)
+  finalRaster <- terra::mask(x = temp, mask = rasterForCalculation)
 
   return(finalRaster)
 }

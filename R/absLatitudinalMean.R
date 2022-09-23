@@ -17,7 +17,8 @@
 #'
 #' @examples
 #'
-#' data(precipDeviation)
+#' precipDeviation <- terra::rast(system.file("data/precipDeviation.asc",
+#'                                            package = "climateStability"))
 #' precipStability <- 1/precipDeviation
 #' alm <- absLatitudinalMean(rasterForCalculation = precipStability)
 #' plot(alm, main = "Precipitation Stability by Absolute Latitude",
@@ -25,8 +26,9 @@
 #'
 #' @export
 absLatitudinalMean <- function(rasterForCalculation){
-  pointExt <- as.data.frame(raster::rasterToPoints(rasterForCalculation)[,1:3])
-  pointExtData <- as.data.frame(pointExt)
+  spatVect <- terra::as.points(rasterForCalculation)
+  pointExtData <- cbind(as.data.frame(crds(spatVect)),
+                        as.data.frame(spatVect))
   latData <- matrix(nrow = length(unique(abs(pointExtData$y))), ncol = 2)
   latData[,1] <- sort(unique(abs(pointExtData$y)))
   colnames(latData) <- c("Latitude",  "Value")
