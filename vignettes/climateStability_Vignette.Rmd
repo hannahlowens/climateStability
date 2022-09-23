@@ -16,9 +16,9 @@ vignette: >
 ---
 
 ```{r setup, include=FALSE}
-library(climateStability);
-library(raster);
-knitr::opts_chunk$set(error = TRUE);
+library(climateStability)
+library(terra)
+knitr::opts_chunk$set(error = TRUE)
 ```
 
 # Introduction 
@@ -26,26 +26,26 @@ knitr::opts_chunk$set(error = TRUE);
 `climateStability` is a small set of `R`-based tools for generating climate stability estimates based on time slices of climate data.
 
 # Calculating Stability
-First, you give the `deviationThroughTime` function the location of a folder containing time slice data (as ASCII rasters) for a single variable, such as that produced by PaleoView (Fordham, *et al*. 2017, Ecography), and the time elapsed *between slices*. It will calculate the average standard deviation over time for each cell. Note that `deviationThroughTime` will use *all* the raster files in the given folder in order, so be careful that it only contains the files from which you want to calculate stability. You may want to also that `R` loads the files in the correct order--that is, that your files are named in such a way that they are in order when read in.
+First, you give the `deviationThroughTime` function the location of a folder containing time slice data (as ASCII rasters) for a single variable, such as that produced by PaleoView (Fordham, *et al*. 2017, Ecography), and the time elapsed *between slices*. It will calculate the average standard deviation over time for each cell. Note that `deviationThroughTime` will use *all* the raster files in the given folder in order, so be careful that it only contains the files from which you want to calculate stability. You may want to also verify that `R` loads the files in the correct order. That is, verify that your files are named in such a way that they are in order when read in.
 
 The function accommodates datasets with even temporal intervals, as well as uneven intervals. First, here is an example with a dataset in which 1,000 years has elapsed between each raster layer.
 
 ```{r example of deviation through time with even time slices, eval=FALSE}
 # deviationThroughTime using even time slices
-precipDeviation <- deviationThroughTime(variableDirectory = "../../ClimateStabilityManuscript/precipfiles/",
-                                        timeSlicePeriod = 1000);
-temperatureDeviation <- deviationThroughTime(variableDirectory = "../../ClimateStabilityManuscript/tempfiles/",
-                                             timeSlicePeriod = 1000);
+precipDeviation <- deviationThroughTime(variableDirectory = "data/precipfiles/",
+                                        timeSlicePeriod = 1000)
+temperatureDeviation <- deviationThroughTime(variableDirectory = "data/tempfiles/",
+                                             timeSlicePeriod = 1000)
 ```
 
 Here is an example with a dataset for which there are uneven time intervals between rasters (every 1,000 years between 1kybp to 5 kybp, and then rasters for 10kybp, 15kybp, and 21kybp). In this case, `timeSlicePeriod` can take a vector specifying the time elapsed between slices. NOTE: make sure the time interval vector is in the *same order* as your time slices. There should be one fewer `timeSlicePeriod` items than the number of climate slice files.
 
 ```{r example of deviation through time with uneven time slices, eval=FALSE}
 # deviationThroughTime using uneven time slices
-unevenPrecipDeviation <- deviationThroughTime(variableDirectory = "../../ClimateStabilityManuscript/precipfilesThinned/", 
-                                              timeSlicePeriod = c(1000, 1000, 1000, 1000, 5000, 5000, 6000));
-unevenTemperatureDeviation <- deviationThroughTime(variableDirectory = "../../ClimateStabilityManuscript/tempfilesThinned/",
-                                                   timeSlicePeriod = c(1000, 1000, 1000, 1000, 5000, 5000, 6000));
+unevenPrecipDeviation <- deviationThroughTime(variableDirectory = "data/precipfilesUneven/", 
+                                              timeSlicePeriod = c(1000, 1000, 1000, 1000, 5000, 5000, 6000))
+unevenTemperatureDeviation <- deviationThroughTime(variableDirectory = "data/tempfilesUneven/",
+                                                   timeSlicePeriod = c(1000, 1000, 1000, 1000, 5000, 5000, 6000))
 ```
 
 You have been provided with two pre-calculated deviation-through-time estimates from Owens and Guralnick. Submitted, Biodiversity Informatics. These were calculated from 100-year climate means for 20 1,000-year time slices from 21 kbp to 1 kbp using data from the TRaCE 21k climate experiment, run in the CCSM 3.0 climate model. These layers will be used to illustrate the remaining `climateStability` package functions.
@@ -53,17 +53,16 @@ You have been provided with two pre-calculated deviation-through-time estimates 
 Let's load them into the `R` environment.
 
 ```{r load the results of deviation through time from the package}
-#Using deviationThroughTime
-data(precipDeviation, package = "climateStability");
-data(temperatureDeviation, package = "climateStability");
+data(precipDeviation, package = "climateStability")
+data(temperatureDeviation, package = "climateStability")
 ```
 
 The next step is scaling the deviation through time estimate from 0 to 1, and then take the inverse of the result. This how you estimate stability for a given climate variable, per Owens and Guralnick, 2019. Biodiversity Informatics.
 
 ```{r calculate stability from deviation}
-precipStability <- stabilityCalc(precipDeviation);
+precipStability <- stabilityCalc(precipDeviation)
 
-tempStability <- stabilityCalc(temperatureDeviation);
+tempStability <- stabilityCalc(temperatureDeviation)
 ```
 
 Finally, to estimate climatic stability, multiply the individual climate variable stability estimates together.
@@ -81,11 +80,11 @@ These data can be visualized either as rasters or as line graphs showing the rel
 This is what climate the stability rasters look like.
 
 ```{r plot stability rasters, fig.height=4, fig.width=8}
-plot(precipStability, main = "Relative Precipitation Stability");
+plot(precipStability, main = "Relative Precipitation Stability")
 plot(rangeBuilder::gshhs, add = T)
-plot(tempStability, main = "Relative Temperature Stability");
+plot(tempStability, main = "Relative Temperature Stability")
 plot(rangeBuilder::gshhs, add = T)
-plot(climateStability, main = "Overall Relative Climate Stability");
+plot(climateStability, main = "Overall Relative Climate Stability")
 plot(rangeBuilder::gshhs, add = T)
 ```
 
@@ -97,13 +96,13 @@ The `climateStability` package comes with a useful tool for calculating mean sta
 ```{r plot latitudinal mean in stability, fig.height=4, fig.width=8}
 #Calculate mean values at rasters
 plot(latitudinalMean(precipStability), main = "Precipitation Stability by Latitude", 
-     ylab = "Relative Stability", type = "l");
+     ylab = "Relative Stability", type = "l")
 
 plot(latitudinalMean(tempStability), main = "Temperature Stability by Latitude", 
-     ylab = "Relative Stability", type = "l");
+     ylab = "Relative Stability", type = "l")
 
 plot(latitudinalMean(climateStability), main = "Climate Stability by Latitude", 
-     ylab = "Relative Stability", type = "l");
+     ylab = "Relative Stability", type = "l")
 ```
 
 Additionally, `climateStability` can calculate mean stability versus the absolute value of the latitudinal mean using the function `absLatitudinalMean`. 
@@ -111,11 +110,11 @@ Additionally, `climateStability` can calculate mean stability versus the absolut
 ```{r plot absolute latitudinal mean in stability, fig.height=4, fig.width=8}
 #Calculate mean values at rasters
 plot(absLatitudinalMean(precipStability), main = "Precipitation Stability by Absolute Latitude", 
-     ylab = "Relative Stability", type = "l");
+     ylab = "Relative Stability", type = "l")
 
 plot(absLatitudinalMean(tempStability), main = "Temperature Stability by Absolute Latitude", 
-     ylab = "Relative Stability", type = "l");
+     ylab = "Relative Stability", type = "l")
 
 plot(absLatitudinalMean(climateStability), main = "Climate Stability by Absolute Latitude", 
-     ylab = "Relative Stability", type = "l");
+     ylab = "Relative Stability", type = "l")
 ```
