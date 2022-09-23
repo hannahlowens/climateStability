@@ -1,4 +1,3 @@
-library(terra)
 library(climateStability)
 
 precipDeviation <- deviationThroughTime("data-raw/precipfiles/", 1000)
