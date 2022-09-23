@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">climateStability</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.4</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@
                         <h4 data-toc-skip class="author">Hannah
 Owens</h4>
             
-            <h4 data-toc-skip class="date">2022-09-21</h4>
+            <h4 data-toc-skip class="date">2022-09-23</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/hannahlowens/climateStability/blob/HEAD/vignettes/climateStability_Vignette.Rmd" class="external-link"><code>vignettes/climateStability_Vignette.Rmd</code></a></small>
       <div class="hidden name"><code>climateStability_Vignette.Rmd</code></div>
@@ -109,18 +109,18 @@ It will calculate the average standard deviation over time for each
 cell. Note that <code>deviationThroughTime</code> will use <em>all</em>
 the raster files in the given folder in order, so be careful that it
 only contains the files from which you want to calculate stability. You
-may want to also that <code>R</code> loads the files in the correct
-order–that is, that your files are named in such a way that they are in
-order when read in.</p>
+may want to also verify that <code>R</code> loads the files in the
+correct order. That is, verify that your files are named in such a way
+that they are in order when read in.</p>
 <p>The function accommodates datasets with even temporal intervals, as
 well as uneven intervals. First, here is an example with a dataset in
 which 1,000 years has elapsed between each raster layer.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># deviationThroughTime using even time slices</span></span>
-<span><span class="va">precipDeviation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/deviationThroughTime.html">deviationThroughTime</a></span><span class="op">(</span>variableDirectory <span class="op">=</span> <span class="st">"../../ClimateStabilityManuscript/precipfiles/"</span>,</span>
-<span>                                        timeSlicePeriod <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span>;</span>
-<span><span class="va">temperatureDeviation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/deviationThroughTime.html">deviationThroughTime</a></span><span class="op">(</span>variableDirectory <span class="op">=</span> <span class="st">"../../ClimateStabilityManuscript/tempfiles/"</span>,</span>
-<span>                                             timeSlicePeriod <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span>;</span></code></pre></div>
+<span><span class="va">precipDeviation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/deviationThroughTime.html">deviationThroughTime</a></span><span class="op">(</span>variableDirectory <span class="op">=</span> <span class="st">"data/precipfiles/"</span>,</span>
+<span>                                        timeSlicePeriod <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span>
+<span><span class="va">temperatureDeviation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/deviationThroughTime.html">deviationThroughTime</a></span><span class="op">(</span>variableDirectory <span class="op">=</span> <span class="st">"data/tempfiles/"</span>,</span>
+<span>                                             timeSlicePeriod <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></code></pre></div>
 <p>Here is an example with a dataset for which there are uneven time
 intervals between rasters (every 1,000 years between 1kybp to 5 kybp,
 and then rasters for 10kybp, 15kybp, and 21kybp). In this case,
@@ -131,10 +131,10 @@ the <em>same order</em> as your time slices. There should be one fewer
 files.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># deviationThroughTime using uneven time slices</span></span>
-<span><span class="va">unevenPrecipDeviation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/deviationThroughTime.html">deviationThroughTime</a></span><span class="op">(</span>variableDirectory <span class="op">=</span> <span class="st">"../../ClimateStabilityManuscript/precipfilesThinned/"</span>, </span>
-<span>                                              timeSlicePeriod <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">1000</span>, <span class="fl">1000</span>, <span class="fl">1000</span>, <span class="fl">5000</span>, <span class="fl">5000</span>, <span class="fl">6000</span><span class="op">)</span><span class="op">)</span>;</span>
-<span><span class="va">unevenTemperatureDeviation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/deviationThroughTime.html">deviationThroughTime</a></span><span class="op">(</span>variableDirectory <span class="op">=</span> <span class="st">"../../ClimateStabilityManuscript/tempfilesThinned/"</span>,</span>
-<span>                                                   timeSlicePeriod <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">1000</span>, <span class="fl">1000</span>, <span class="fl">1000</span>, <span class="fl">5000</span>, <span class="fl">5000</span>, <span class="fl">6000</span><span class="op">)</span><span class="op">)</span>;</span></code></pre></div>
+<span><span class="va">unevenPrecipDeviation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/deviationThroughTime.html">deviationThroughTime</a></span><span class="op">(</span>variableDirectory <span class="op">=</span> <span class="st">"data/precipfilesUneven/"</span>, </span>
+<span>                                              timeSlicePeriod <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">1000</span>, <span class="fl">1000</span>, <span class="fl">1000</span>, <span class="fl">5000</span>, <span class="fl">5000</span>, <span class="fl">6000</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">unevenTemperatureDeviation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/deviationThroughTime.html">deviationThroughTime</a></span><span class="op">(</span>variableDirectory <span class="op">=</span> <span class="st">"data/tempfilesUneven/"</span>,</span>
+<span>                                                   timeSlicePeriod <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">1000</span>, <span class="fl">1000</span>, <span class="fl">1000</span>, <span class="fl">5000</span>, <span class="fl">5000</span>, <span class="fl">6000</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>You have been provided with two pre-calculated deviation-through-time
 estimates from Owens and Guralnick. Submitted, Biodiversity Informatics.
 These were calculated from 100-year climate means for 20 1,000-year time
@@ -144,17 +144,16 @@ to illustrate the remaining <code>climateStability</code> package
 functions.</p>
 <p>Let’s load them into the <code>R</code> environment.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#Using deviationThroughTime</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">precipDeviation</span>, package <span class="op">=</span> <span class="st">"climateStability"</span><span class="op">)</span>;</span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">temperatureDeviation</span>, package <span class="op">=</span> <span class="st">"climateStability"</span><span class="op">)</span>;</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">precipDeviation</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/rast.html" class="external-link">rast</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"data/precipDeviation.asc"</span>, package <span class="op">=</span> <span class="st">"climateStability"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">temperatureDeviation</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/rast.html" class="external-link">rast</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"data/temperatureDeviation.asc"</span>, package <span class="op">=</span> <span class="st">"climateStability"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>The next step is scaling the deviation through time estimate from 0
 to 1, and then take the inverse of the result. This how you estimate
 stability for a given climate variable, per Owens and Guralnick, 2019.
 Biodiversity Informatics.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">precipStability</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/stabilityCalc.html">stabilityCalc</a></span><span class="op">(</span><span class="va">precipDeviation</span><span class="op">)</span>;</span>
+<code class="sourceCode R"><span><span class="va">precipStability</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/stabilityCalc.html">stabilityCalc</a></span><span class="op">(</span><span class="va">precipDeviation</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">tempStability</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/stabilityCalc.html">stabilityCalc</a></span><span class="op">(</span><span class="va">temperatureDeviation</span><span class="op">)</span>;</span></code></pre></div>
+<span><span class="va">tempStability</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/stabilityCalc.html">stabilityCalc</a></span><span class="op">(</span><span class="va">temperatureDeviation</span><span class="op">)</span></span></code></pre></div>
 <p>Finally, to estimate climatic stability, multiply the individual
 climate variable stability estimates together.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -170,15 +169,15 @@ showing the relationship between latitude and stability.</p>
 </h3>
 <p>This is what climate the stability rasters look like.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">precipStability</span>, main <span class="op">=</span> <span class="st">"Relative Precipitation Stability"</span><span class="op">)</span>;</span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">precipStability</span>, main <span class="op">=</span> <span class="st">"Relative Precipitation Stability"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">rangeBuilder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/rangeBuilder/man/rangeBuilder-example.html" class="external-link">gshhs</a></span>, add <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
 <p><img src="climateStability_Vignette_files/figure-html/plot%20stability%20rasters-1.png" width="768"></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tempStability</span>, main <span class="op">=</span> <span class="st">"Relative Temperature Stability"</span><span class="op">)</span>;</span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tempStability</span>, main <span class="op">=</span> <span class="st">"Relative Temperature Stability"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">rangeBuilder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/rangeBuilder/man/rangeBuilder-example.html" class="external-link">gshhs</a></span>, add <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
 <p><img src="climateStability_Vignette_files/figure-html/plot%20stability%20rasters-2.png" width="768"></p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climateStability</span>, main <span class="op">=</span> <span class="st">"Overall Relative Climate Stability"</span><span class="op">)</span>;</span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">climateStability</span>, main <span class="op">=</span> <span class="st">"Overall Relative Climate Stability"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">rangeBuilder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/rangeBuilder/man/rangeBuilder-example.html" class="external-link">gshhs</a></span>, add <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
 <p><img src="climateStability_Vignette_files/figure-html/plot%20stability%20rasters-3.png" width="768"></p>
 </div>
@@ -192,15 +191,15 @@ stability for a given variable as a response to latitude.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Calculate mean values at rasters</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="../reference/latitudinalMean.html">latitudinalMean</a></span><span class="op">(</span><span class="va">precipStability</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">"Precipitation Stability by Latitude"</span>, </span>
-<span>     ylab <span class="op">=</span> <span class="st">"Relative Stability"</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span>;</span></code></pre></div>
+<span>     ylab <span class="op">=</span> <span class="st">"Relative Stability"</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="climateStability_Vignette_files/figure-html/plot%20latitudinal%20mean%20in%20stability-1.png" width="768"></p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="../reference/latitudinalMean.html">latitudinalMean</a></span><span class="op">(</span><span class="va">tempStability</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">"Temperature Stability by Latitude"</span>, </span>
-<span>     ylab <span class="op">=</span> <span class="st">"Relative Stability"</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span>;</span></code></pre></div>
+<span>     ylab <span class="op">=</span> <span class="st">"Relative Stability"</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="climateStability_Vignette_files/figure-html/plot%20latitudinal%20mean%20in%20stability-2.png" width="768"></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="../reference/latitudinalMean.html">latitudinalMean</a></span><span class="op">(</span><span class="va">climateStability</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">"Climate Stability by Latitude"</span>, </span>
-<span>     ylab <span class="op">=</span> <span class="st">"Relative Stability"</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span>;</span></code></pre></div>
+<span>     ylab <span class="op">=</span> <span class="st">"Relative Stability"</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="climateStability_Vignette_files/figure-html/plot%20latitudinal%20mean%20in%20stability-3.png" width="768"></p>
 <p>Additionally, <code>climateStability</code> can calculate mean
 stability versus the absolute value of the latitudinal mean using the
@@ -208,15 +207,15 @@ function <code>absLatitudinalMean</code>.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Calculate mean values at rasters</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="../reference/absLatitudinalMean.html">absLatitudinalMean</a></span><span class="op">(</span><span class="va">precipStability</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">"Precipitation Stability by Absolute Latitude"</span>, </span>
-<span>     ylab <span class="op">=</span> <span class="st">"Relative Stability"</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span>;</span></code></pre></div>
+<span>     ylab <span class="op">=</span> <span class="st">"Relative Stability"</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="climateStability_Vignette_files/figure-html/plot%20absolute%20latitudinal%20mean%20in%20stability-1.png" width="768"></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="../reference/absLatitudinalMean.html">absLatitudinalMean</a></span><span class="op">(</span><span class="va">tempStability</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">"Temperature Stability by Absolute Latitude"</span>, </span>
-<span>     ylab <span class="op">=</span> <span class="st">"Relative Stability"</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span>;</span></code></pre></div>
+<span>     ylab <span class="op">=</span> <span class="st">"Relative Stability"</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="climateStability_Vignette_files/figure-html/plot%20absolute%20latitudinal%20mean%20in%20stability-2.png" width="768"></p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="../reference/absLatitudinalMean.html">absLatitudinalMean</a></span><span class="op">(</span><span class="va">climateStability</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">"Climate Stability by Absolute Latitude"</span>, </span>
-<span>     ylab <span class="op">=</span> <span class="st">"Relative Stability"</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span>;</span></code></pre></div>
+<span>     ylab <span class="op">=</span> <span class="st">"Relative Stability"</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="climateStability_Vignette_files/figure-html/plot%20absolute%20latitudinal%20mean%20in%20stability-3.png" width="768"></p>
 </div>
 </div>

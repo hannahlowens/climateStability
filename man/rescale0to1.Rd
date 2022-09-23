@@ -7,7 +7,7 @@
 rescale0to1(rasterForCalculation)
 }
 \arguments{
-\item{rasterForCalculation}{A raster that contains data to be rescaled}
+\item{rasterForCalculation}{A `SpatRaster` that contains data to be rescaled}
 }
 \value{
 A raster that has been rescaled from 0 to 1
@@ -17,7 +17,8 @@ A function to rescale a raster from 0 to 1. This is done using the formula (valu
 }
 \examples{
 
-data(precipDeviation)
+precipDeviation <- terra::rast(system.file("data/precipDeviation.asc",
+                                           package = "climateStability"))
 precipStability <- 1/precipDeviation
 relativeClimateStability <- rescale0to1(precipStability)
 

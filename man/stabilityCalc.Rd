@@ -7,7 +7,8 @@
 stabilityCalc(rasterForCalculation)
 }
 \arguments{
-\item{rasterForCalculation}{A raster that contains data from which stability is to be calculated.}
+\item{rasterForCalculation}{A `SpatRaster` object that contains data from which stability is to be
+calculated.}
 }
 \value{
 A raster
@@ -23,7 +24,8 @@ simply divide 1 by the raster and rescale the result, you can end up with a rast
 }
 \examples{
 
-data(precipDeviation)
+precipDeviation <- terra::rast(system.file("data/precipDeviation.asc",
+                                           package = "climateStability"))
 precipStability <- stabilityCalc(precipDeviation)
 
 }

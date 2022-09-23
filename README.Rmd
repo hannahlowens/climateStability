@@ -25,6 +25,13 @@ You can install climateStability from github with:
 devtools::install_github("hannahlowens/climateStability")
 ```
 
+or from CRAN with:
+
+```{r CRAN installation, eval = FALSE}
+# install.packages("devtools")
+install.packages("climateStability")
+```
+
 ## Example
 
 This is a basic example which shows you how to calculate climate stability using time-slice datasets for two variables:
@@ -32,13 +39,13 @@ This is a basic example which shows you how to calculate climate stability using
 ```{r example, eval=FALSE}
 # First, calculate deviation through time using even time slices
 precipDeviation <- deviationThroughTime(variableDirectory = "../ClimateStabilityManuscript/precipfiles/",
-                                        timeSlicePeriod = 1000, fileExtension = "asc");
+                                        timeSlicePeriod = 1000, fileExtension = "asc")
 temperatureDeviation <- deviationThroughTime(variableDirectory = "../ClimateStabilityManuscript/tempfiles/",
-                                             timeSlicePeriod = 1000, fileExtension = "asc");
+                                             timeSlicePeriod = 1000, fileExtension = "asc")
 
 # Next, calculate stability for each variable (the inverse of deviation, scaled to between 0 and 1)
-precipInvDev <- stabilityCalc(precipDeviation);
-tempInvDev <- stabilityCalc(temperatureDeviation);
+precipInvDev <- stabilityCalc(precipDeviation)
+tempInvDev <- stabilityCalc(temperatureDeviation)
 
 # Finally, multiply them together and rescale to estimate relative climate stability
 climateStability <- rescale0to1(precipStability * tempStability)
