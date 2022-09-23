@@ -16,8 +16,10 @@ LazyData: true
 Imports:
   raster
 Suggests:
-  rangeBuilder,
-  rmarkdown,
-  knitr
+    rangeBuilder,
+    rmarkdown,
+    knitr,
+    testthat (>= 3.0.0)
 VignetteBuilder: knitr
 RoxygenNote: 7.2.1
+Config/testthat/edition: 3
