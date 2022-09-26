@@ -1,16 +1,25 @@
 #' @title Calculating deviation through time
 #'
-#' @description A function that reads time-slice rasters of data for a given climate (typically processed data from a climate model run, such as the results of an analysis using PaleoView (Fordham, *et al.* 2017, Ecography)) in a given directory and calculates average deviation per year across time slices.
+#' @description A function that reads time-slice rasters of data for a given climate (typically processed data from a
+#' climate model run, such as the results of an analysis using PaleoView (Fordham, *et al.* 2017, Ecography)) in a given
+#' directory and calculates average deviation per year across time slices.
 #'
 #' @param variableDirectory A directory containing at least two time slice rasters for a given climate variable.
 #'
-#' @param timeSlicePeriod Either a single number, in years, representing the time period elapsed between temporally-even climate variable raster slices, or a vector corresponding to periods, in years, between temporally-uneven time slices.
+#' @param timeSlicePeriod Either a single number, in years, representing the time period elapsed between temporally-even
+#' climate variable raster slices, or a vector corresponding to periods, in years, between temporally-uneven time slices.
 #'
-#' @param fileExtension a character that describes the fileExtension corresponding to the all suported formats in \code{\link[raster]{writeFormats}}
+#' @param fileExtension a character that describes the fileExtension corresponding to the all suported formats in
+#' \code{\link[raster]{writeFormats}}
 #'
 #' @details Make sure that files in the `variableDirectory` are read into `R` in order.
 #'
-#' If you are specifying temporally-uneven time slices with `timeSlicePeriod`, make sure that each number corresponds to the number of years elapsed *between* time slices, *in the same order as the files were read into `R`*. There should be one less number than the number of files, and you must have at least three files in the directory.
+#' If you are specifying temporally-uneven time slices with `timeSlicePeriod`, make sure that each number corresponds to the
+#' number of years elapsed *between* time slices, *in the same order as the files were read into `R`*. There should be one
+#' less number than the number of files, and you must have at least three files in the directory.
+#'
+#' See `precipDeviation.asc` and `temperatureDeviation.asc` for examples of rasters created using this function. See reference
+#' for data source details.
 #'
 #' @return A raster showing the geographic distribution of climate deviation through time for a particular climate variable.
 #'
@@ -20,8 +29,6 @@
 #' Owens, H.L., Guralnick, R., 2019. climateStability: An R package to estimate
 #' climate stability from time-slice climatologies. Biodiversity Informatics
 #' 14, 8–13. https://doi.org/10.17161/bi.v14i0.9786
-#'
-#' @seealso \code{\link{precipDeviation}} and \code{\link{temperatureDeviation}} for examples of data produced using this function.
 #'
 #' @examples
 #' \donttest{
@@ -58,7 +65,7 @@ deviationThroughTime <- function(variableDirectory, timeSlicePeriod,
   }
 
   if(length(timeSlicePeriod) != 1 && length(timeSlicePeriod) != (length(rastList) - 1)){
-    stop("The specified timeSlicePeriod object is not of expected length (1 or one less than the number of .asc files in variableDirectory)")
+    stop("Specified timeSlicePeriod object is not of expected length \n(1 or one less than number of .asc files in variableDirectory)")
   }
   print(rastList)
   varStack <- terra::rast(rastList)
