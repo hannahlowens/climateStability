@@ -1,3 +1,15 @@
+year <- format(Sys.Date(), "%Y")
+note <- sprintf("R package version %s", meta$Version)
+
+bibentry(bibtype = "Manual",
+         title = "{climateStability}: An R package to estimate climate stability from time-slice climatologies",
+         author = c(person("Hannah L.", "Owens"),
+                    person("Robert P.", "Guralnick")),
+         year = year,
+         note = note,
+         url = "https://CRAN.R-project.org/package=climateStability")
+
+
 citHeader("To cite climateStability in publications use:")
 
 citEntry(
