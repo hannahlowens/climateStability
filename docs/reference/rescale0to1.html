@@ -90,8 +90,11 @@ climate stability from time-slice climatologies. Biodiversity Informatics
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">precipDeviation</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/rast.html" class="external-link">rast</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"data/precipDeviation.asc"</span>,</span></span>
 <span class="r-in"><span>                                           package <span class="op">=</span> <span class="st">"climateStability"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> [rast] filename is empty. Provide a valid filename</span>
 <span class="r-in"><span><span class="va">precipStability</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">/</span><span class="va">precipDeviation</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'precipDeviation' not found</span>
 <span class="r-in"><span><span class="va">relativeClimateStability</span> <span class="op">&lt;-</span> <span class="fu">rescale0to1</span><span class="op">(</span><span class="va">precipStability</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in rescale0to1(precipStability):</span> object 'precipStability' not found</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

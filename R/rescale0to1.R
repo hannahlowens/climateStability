@@ -13,9 +13,10 @@
 #' climate stability from time-slice climatologies. Biodiversity Informatics
 #' 14, 8–13. https://doi.org/10.17161/bi.v14i0.9786
 #'
-#' @examples
+#' @importFrom terra minmax
 #'
-#' precipDeviation <- terra::rast(system.file("data/precipDeviation.asc",
+#' @examples
+#' precipDeviation <- terra::rast(system.file("inst/extdata/precipDeviation.asc",
 #'                                            package = "climateStability"))
 #' precipStability <- 1/precipDeviation
 #' relativeClimateStability <- rescale0to1(precipStability)
@@ -26,7 +27,7 @@ rescale0to1 <- function(rasterForCalculation){
     warning("Supplied argument is not a SpatRaster./n", sep = "")
     return(NULL)
   }
-  rasterMinMax <- terra::minmax(rasterForCalculation)
+  rasterMinMax <- minmax(rasterForCalculation)
   rescaledRaster <- (rasterForCalculation - rasterMinMax[1])/(rasterMinMax[2] - rasterMinMax[1])
   return(rescaledRaster)
 }
