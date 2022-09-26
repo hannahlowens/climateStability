@@ -1,5 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^.github
+^.gitignore
 ^README\.Rmd$
 ^README-.*\.png$
 ^_config.yml$
