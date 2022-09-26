@@ -21,7 +21,7 @@
 #'
 #' @examples
 #'
-#' precipDeviation <- terra::rast(system.file("data/precipDeviation.asc",
+#' precipDeviation <- terra::rast(system.file("inst/extdata/precipDeviation.asc",
 #'                                            package = "climateStability"))
 #' precipStability <- stabilityCalc(precipDeviation)
 #'
