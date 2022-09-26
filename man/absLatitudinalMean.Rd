@@ -17,7 +17,8 @@ A function to calculate mean values of a raster at the absolute value of latitud
 }
 \examples{
 
-data(precipDeviation)
+precipDeviation <- terra::rast(system.file("data/precipDeviation.asc",
+                                           package = "climateStability"))
 precipStability <- 1/precipDeviation
 alm <- absLatitudinalMean(rasterForCalculation = precipStability)
 plot(alm, main = "Precipitation Stability by Absolute Latitude",
