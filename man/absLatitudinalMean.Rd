@@ -7,17 +7,18 @@
 absLatitudinalMean(rasterForCalculation)
 }
 \arguments{
-\item{rasterForCalculation}{A raster that contains data for plotting according to latitudinal value}
+\item{rasterForCalculation}{A `SpatRaster` that contains data for plotting according to latitudinal value}
 }
 \value{
-A vector of mean raster values for each absolute value of latitude.
+A vector of mean values for each absolute latitude value.
 }
 \description{
-A function to calculate mean values of a raster at the absolute value of latitude, at the resolution of a given raster layer.
+A function to calculate mean values of a `SpatRaster` at the absolute value of latitude,
+at the resolution of the given raster layer.
 }
 \examples{
 
-precipDeviation <- terra::rast(system.file("data/precipDeviation.asc",
+precipDeviation <- terra::rast(system.file("extdata/precipDeviation.asc",
                                            package = "climateStability"))
 precipStability <- 1/precipDeviation
 alm <- absLatitudinalMean(rasterForCalculation = precipStability)

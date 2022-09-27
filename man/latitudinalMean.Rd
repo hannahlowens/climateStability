@@ -17,8 +17,8 @@ A function to calculate mean values of a raster at every line of latitude, at th
 }
 \examples{
 
-precipDeviation <- terra::rast(system.file("data/precipDeviation.asc",
-                                           package = "climateStability"))
+precipDeviation <- terra::rast(system.file("extdata/precipDeviation.asc",
+                                            package = "climateStability"))
 precipStability <- 1/precipDeviation
 latMean <- latitudinalMean(rasterForCalculation = precipStability)
 plot(latMean, main = "Precipitation Stability by Latitude",
