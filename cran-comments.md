@@ -14,7 +14,7 @@ return informative errors.
 ## Test environments
 * local OS X 12.6 install, R 4.1.2
 
-* win-builder (devel and release), R 4.2.0
+* win-builder (devel and release), R 4.2.1
 * ubuntu 20.04 (devel and release, on GitHub Actions), R 4.2.1
 * windows-latest (on GitHub Actions), R 4.2.1
 * macOS-latest (on GitHub Actions), R 4.2.1
