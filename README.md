@@ -6,6 +6,8 @@
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Codecov test coverage](https://codecov.io/gh/hannahlowens/climateStability/branch/main/graph/badge.svg)](https://codecov.io/gh/hannahlowens/climateStability?branch=main)
 
+<!-- badges: end -->
+
 # climateStability
 
 The goal of climateStability is to provide a simple set of `R`-based

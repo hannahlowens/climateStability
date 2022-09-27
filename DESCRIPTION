@@ -17,10 +17,11 @@ Imports:
   terra,
   methods
 Suggests:
-  rangeBuilder,
-  rmarkdown,
-  knitr,
-  testthat (>= 3.0.0)
+    rangeBuilder,
+    rmarkdown,
+    knitr,
+    testthat (>= 3.0.0),
+    covr
 VignetteBuilder: knitr
 RoxygenNote: 7.2.1
 Config/testthat/edition: 3
