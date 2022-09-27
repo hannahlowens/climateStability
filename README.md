@@ -4,6 +4,7 @@
 [![cran version](https://www.r-pkg.org/badges/version/climateStability)](https://cran.r-project.org/package=climateStability)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/climateStability)](https://github.com/r-hub/cranlogs.app)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![Codecov test coverage](https://codecov.io/gh/hannahlowens/climateStability/branch/main/graph/badge.svg)](https://codecov.io/gh/hannahlowens/climateStability?branch=main)
 
 # climateStability
 
@@ -27,9 +28,9 @@ stability using time-slice datasets for two variables:
 
 ``` r
 # First, calculate deviation through time using even time slices
-precipDeviation <- deviationThroughTime(variableDirectory = "../ClimateStabilityManuscript/precipfiles/",
+precipDeviation <- deviationThroughTime(variableDirectory = "YOUR_DIRECTORY/precipitationFiles/",
                                         timeSlicePeriod = 1000, fileExtension = "asc");
-temperatureDeviation <- deviationThroughTime(variableDirectory = "../ClimateStabilityManuscript/tempfiles/",
+temperatureDeviation <- deviationThroughTime(variableDirectory = "YOUR_DIRECTORY/temperatureFiles/",
                                              timeSlicePeriod = 1000, fileExtension = "asc");
 
 # Next, calculate stability for each variable (the inverse of deviation, scaled to between 0 and 1)
