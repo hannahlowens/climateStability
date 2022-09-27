@@ -17,6 +17,7 @@
 #' @seealso \code{\link{latitudinalMean}} for calculating mean values of rasters for all latitudinal bands.
 #'
 #' @importFrom terra crds as.points
+#' @importFrom methods is
 #'
 #' @examples
 #'

@@ -14,7 +14,8 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports:
-  terra
+  terra,
+  methods
 Suggests:
   rangeBuilder,
   rmarkdown,

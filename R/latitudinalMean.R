@@ -17,14 +17,16 @@
 #'
 #' @examples
 #'
-#' precipDeviation <- terra::rast(system.file("inst/extdata/precipDeviation.asc",
-#'                                            package = "climateStability"))
+#' precipDeviation <- terra::rast(system.file("extdata/precipDeviation.asc",
+#'                                             package = "climateStability"))
 #' precipStability <- 1/precipDeviation
 #' latMean <- latitudinalMean(rasterForCalculation = precipStability)
 #' plot(latMean, main = "Precipitation Stability by Latitude",
 #' ylab = "Relative Stability", type = "l")
 #'
 #' @importFrom terra as.points crds
+#' @importFrom methods is
+#'
 #' @export
 latitudinalMean <- function(rasterForCalculation){
   if (!is(rasterForCalculation, "SpatRaster")){
