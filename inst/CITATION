@@ -7,7 +7,8 @@ bibentry(bibtype = "Manual",
                     person("Robert P.", "Guralnick")),
          year = year,
          note = note,
-         url = "https://CRAN.R-project.org/package=climateStability")
+         url = "https://CRAN.R-project.org/package=climateStability",
+         doi = "10.5281/zenodo.7116152")
 
 
 citHeader("To cite climateStability in publications use:")
