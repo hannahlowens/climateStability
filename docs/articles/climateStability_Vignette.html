@@ -155,15 +155,15 @@ stability for a given climate variable, per Owens and Guralnick, 2019.
 Biodiversity Informatics.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">precipStability</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/stabilityCalc.html">stabilityCalc</a></span><span class="op">(</span><span class="va">precipDeviation</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Error in stabilityCalc(precipDeviation): object 'precipDeviation' not found</span></span></code></pre>
+<pre><code><span><span class="co">## Error in is(rasterForCalculation, "SpatRaster"): object 'precipDeviation' not found</span></span></code></pre>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tempStability</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/stabilityCalc.html">stabilityCalc</a></span><span class="op">(</span><span class="va">temperatureDeviation</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Error in stabilityCalc(temperatureDeviation): object 'temperatureDeviation' not found</span></span></code></pre>
+<pre><code><span><span class="co">## Error in is(rasterForCalculation, "SpatRaster"): object 'temperatureDeviation' not found</span></span></code></pre>
 <p>Finally, to estimate climatic stability, multiply the individual
 climate variable stability estimates together.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">climateStability</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rescale0to1.html">rescale0to1</a></span><span class="op">(</span><span class="va">precipStability</span> <span class="op">*</span> <span class="va">tempStability</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Error in rescale0to1(precipStability * tempStability): object 'precipStability' not found</span></span></code></pre>
+<pre><code><span><span class="co">## Error in is(rasterForCalculation, "SpatRaster"): object 'precipStability' not found</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="plots-showing-stability">Plots showing stability<a class="anchor" aria-label="anchor" href="#plots-showing-stability"></a>

@@ -14,6 +14,7 @@
 #' 14, 8–13. https://doi.org/10.17161/bi.v14i0.9786
 #'
 #' @importFrom terra minmax
+#' @importFrom methods is
 #'
 #' @examples
 #' precipDeviation <- terra::rast(system.file("extdata/precipDeviation.asc",
@@ -23,7 +24,7 @@
 #'
 #' @export
 rescale0to1 <- function(rasterForCalculation){
-  if (class(rasterForCalculation) != "SpatRaster"){
+  if (!is(rasterForCalculation, "SpatRaster")){
     warning("Supplied argument is not a SpatRaster./n", sep = "")
     return(NULL)
   }
