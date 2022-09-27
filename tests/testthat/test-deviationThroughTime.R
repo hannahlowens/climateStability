@@ -3,6 +3,11 @@ library(terra)
 
 # Set up dataset for test
 td <- tempdir()
+
+write(x = "Check incompatible file extension.", file = paste0(td ,"/badFile.txt"))
+write(x = "Check incompatible file extension.", file = paste0(td ,"/badFile2.txt"))
+write(x = "Check incompatible file extension.", file = paste0(td ,"/badFile3.txt"))
+
 suppressWarnings(x <- rast(nrows=20, ncols=20, xmin=0, xmax=10, ymin=0, ymax=10, vals = c(10,10,10,10,20)))
 x2 <- x * 1.01
 suppressWarnings(x3 <- rast(nrows=20, ncols=20, xmin=0, xmax=10, ymin=0, ymax=10, vals = c(10,10,10,10,10)))
@@ -19,13 +24,19 @@ test_that("devationThroughTime general tests", {
   expect_error(climateStability::deviationThroughTime(variableDirectory = td,
                                                       timeSlicePeriod = 100,
                                                       fileExtension = "cheese"))
+  expect_warning(climateStability::deviationThroughTime(variableDirectory = td,
+                                                      timeSlicePeriod = 100,
+                                                      fileExtension = "txt"))
 })
+
 
 
 # Evenly spaced vectors ----
 
 test_that("devationThroughTime evenly spaced", {
-  testResult <- climateStability::deviationThroughTime(td, 100, fileExtension = "tif")
+  testResult <- climateStability::deviationThroughTime(td,
+                                                       timeSlicePeriod = 100,
+                                                       fileExtension = "tif")
   expect_equal(class(testResult)[[1]], "SpatRaster")
 })
 

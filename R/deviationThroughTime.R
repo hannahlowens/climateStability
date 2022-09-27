@@ -9,8 +9,8 @@
 #' @param timeSlicePeriod Either a single number, in years, representing the time period elapsed between temporally-even
 #' climate variable raster slices, or a vector corresponding to periods, in years, between temporally-uneven time slices.
 #'
-#' @param fileExtension a character that describes the fileExtension corresponding to the all suported formats in
-#' \code{\link[raster]{writeFormats}}
+#' @param fileExtension a character that describes a fileExtension corresponding to one of the suported drivers in
+#' \code{\link[terra]{gdal}}
 #'
 #' @details Make sure that files in the `variableDirectory` are read into `R` in order.
 #'
@@ -31,14 +31,27 @@
 #' 14, 8–13. https://doi.org/10.17161/bi.v14i0.9786
 #'
 #' @examples
-#' \donttest{
-#' #Even time slices
-#' precipDeviation <- deviationThroughTime("precipfiles/", 1000)
+#' # Generate sample data
+#' td <- tempdir()
+#' suppressWarnings(x <- terra::rast(nrows=20, ncols=20,
+#'                                   xmin=0, xmax=10, ymin=0, ymax=10,
+#'                                   vals = c(10,10,10,10,20)))
+#' x2 <- x * 1.01
+#' rastStack <- c(x, x2, x)
+#' terra::writeRaster(rastStack, filename = paste0(td, "/raster",
+#'                                                 1:terra::nlyr(rastStack), ".tif"),
+#'                    overwrite = TRUE)
 #'
-#' #Uneven time slices
-#' precipDeviationUneven <- deviationThroughTime("unevenPrecipFiles",
-#'                                               c(1000, 1000, 1000, 1000, 5000, 5000, 6000))
-#'}
+#' # Even time slices
+#' testResult <- deviationThroughTime(td, timeSlicePeriod = 100,
+#'                                    fileExtension = "tif")
+#'
+#' # Uneven time slices
+#' testResult <- deviationThroughTime(variableDirectory = td,
+#'                                    timeSlicePeriod = c(25, 100),
+#'                                    fileExtension = "tif")
+#' # Delete temporary files
+#' unlink(td)
 #'
 #' @importFrom terra rast stdev
 #'
@@ -47,8 +60,6 @@ deviationThroughTime <- function(variableDirectory, timeSlicePeriod,
                                  fileExtension = "asc"){
 
   fileExtension <- tolower(fileExtension)
-  match.arg(fileExtension, c("grd", "asc", "sdat", "rst", "nc", "tif", "envi",
-                             "bil", "img"))
 
   if (!dir.exists(variableDirectory)){
     stop(variableDirectory, " is not a directory that exists.")
@@ -60,6 +71,11 @@ deviationThroughTime <- function(variableDirectory, timeSlicePeriod,
   rastList <- list.files(path = variableDirectory,
                          pattern = paste0(".", fileExtension, "$"), full.names = T)
 
+  if(!length(rastList) > 0){
+    stop(variableDirectory, " does not contain any files with ", fileExtension,
+    " file extension.")
+  }
+
   if(!length(rastList) > 2){
     stop(variableDirectory, " must contain at least three raster layers.")
   }
@@ -67,23 +83,33 @@ deviationThroughTime <- function(variableDirectory, timeSlicePeriod,
   if(length(timeSlicePeriod) != 1 && length(timeSlicePeriod) != (length(rastList) - 1)){
     stop("Specified timeSlicePeriod object is not of expected length \n(1 or one less than number of .asc files in variableDirectory)")
   }
-  print(rastList)
-  varStack <- terra::rast(rastList)
-  intervalDev <- varStack[[-1]]
-  count <- 2
-  while (count <= length(rastList)){
-    if(length(timeSlicePeriod) == 1){
-      intervalDev[[(count - 1)]] <- terra::stdev(varStack[[(count-1):count]], na.rm = TRUE)/timeSlicePeriod[[1]]
-    } else{
-      intervalDev[[(count - 1)]] <- terra::stdev(varStack[[(count-1):count]], na.rm = TRUE)/timeSlicePeriod[[(count-1)]]
-    }
-    count <- count + 1
-  }
-  if (length(timeSlicePeriod) == 1){
-    deviation <- sum(intervalDev)/(timeSlicePeriod*(length(rastList)-1))
-  } else{
-    deviation <- sum(intervalDev)/sum(timeSlicePeriod)
-  }
 
-  return(deviation)
+  print(rastList)
+
+  varStack <- try(suppressWarnings(terra::rast(rastList)),
+                  silent = TRUE)
+  if("try-error" %in% class(varStack)){
+    warning(message(fileExtension, " is not a supported file extension.\n"))
+    return(NULL)
+  } else{
+    intervalDev <- varStack[[-1]]
+    count <- 2
+    while (count <= length(rastList)){
+      if(length(timeSlicePeriod) == 1){
+        intervalDev[[(count - 1)]] <- terra::stdev(varStack[[(count-1):count]],
+                                                   na.rm = TRUE)/timeSlicePeriod[[1]]
+      } else{
+        intervalDev[[(count - 1)]] <- terra::stdev(varStack[[(count-1):count]],
+                                                   na.rm = TRUE)/timeSlicePeriod[[(count-1)]]
+      }
+      count <- count + 1
+    }
+    if (length(timeSlicePeriod) == 1){
+      deviation <- sum(intervalDev)/(timeSlicePeriod*(length(rastList)-1))
+    } else{
+      deviation <- sum(intervalDev)/sum(timeSlicePeriod)
+    }
+
+    return(deviation)
+  }
 }
