@@ -24,7 +24,7 @@ simply divide 1 by the raster and rescale the result, you can end up with a rast
 }
 \examples{
 
-precipDeviation <- terra::rast(system.file("data/precipDeviation.asc",
+precipDeviation <- terra::rast(system.file("extdata/precipDeviation.asc",
                                            package = "climateStability"))
 precipStability <- stabilityCalc(precipDeviation)
 

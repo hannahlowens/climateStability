@@ -16,7 +16,7 @@
 #' @importFrom terra minmax
 #'
 #' @examples
-#' precipDeviation <- terra::rast(system.file("inst/extdata/precipDeviation.asc",
+#' precipDeviation <- terra::rast(system.file("extdata/precipDeviation.asc",
 #'                                            package = "climateStability"))
 #' precipStability <- 1/precipDeviation
 #' relativeClimateStability <- rescale0to1(precipStability)
