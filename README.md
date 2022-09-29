@@ -4,7 +4,7 @@
 [![cran version](https://www.r-pkg.org/badges/version/climateStability)](https://cran.r-project.org/package=climateStability)
 [![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/climateStability)](https://github.com/r-hub/cranlogs.app)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![codecov](https://codecov.io/gh/hannahlowens/climateStability/branch/master/graph/badge.svg?token=0L8KQGCDEX)](https://codecov.io/gh/hannahlowens/climateStability)
+[![codecov](https://codecov.io/gh/hannahlowens/climateStability/branch/master/graph/badge.svg?token=0L8KQGCDEX)](https://app.codecov.io/gh/hannahlowens/climateStability)
 [![DOI](https://zenodo.org/badge/174156227.svg)](https://zenodo.org/badge/latestdoi/174156227)
 
 <!-- badges: end -->
