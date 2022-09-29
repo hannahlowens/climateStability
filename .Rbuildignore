@@ -12,3 +12,4 @@
 ^Meta$
 ^data-raw$
 ^codecov\.yml$
+^CRAN-SUBMISSION$
