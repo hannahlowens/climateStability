@@ -76,7 +76,7 @@ citation(package = "climateStability")
 #> 
 #>   @Article{,
 #>     title = {climateStability: An R package to estimate climate stability from time-slice climatologies},
-#>     author = {{Hannah L. Owens} and {Robert Guralnick}},
+#>     author = {{Hannah L Owens} and {Robert Guralnick}},
 #>     journal = {Biodiversity Informatics},
 #>     year = {2019},
 #>     volume = {14},
